@@ -23,6 +23,9 @@ func _ready() -> void:
 	board.init_board(players)
 	terrain.init(players)
 	_connect_signals()
+	call_deferred("_start_first_turn")   # ← le tour commence à la frame suivante
+
+func _start_first_turn() -> void:
 	players[turn_idx].start_turn()
 
 # ---------------------------------------------------------------- init joueurs
