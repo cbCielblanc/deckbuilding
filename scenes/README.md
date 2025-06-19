@@ -15,10 +15,11 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 ## Key Scenes
 | Scene | Purpose |
 |------|---------|
-| `MainMenu.tscn` | Buttons to start solo or online mode. |
+| `MainMenu.tscn` | Buttons to start solo or online mode with a background. |
 | `LobbyMenu.tscn` | Connects peers and displays player list. |
-| `Main.tscn` | Contains battle board and managers. |
+| `Main.tscn` | Contains battle board, managers and a background. |
 | `MarketDialog.tscn` | Popup for the neutral auction house. |
 
 
 Scenes rarely contain code beyond hooking up their child nodes. When adding a new scene, keep scripts minimal and delegate behaviour to a manager in `scripts/` or UI controller in `ui/` so the structure stays maintainable.
+Both main scenes use a `TextureRect` named `Background` that loads `assets/ui/bg_main.png` to cover the screen.
