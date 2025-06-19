@@ -72,4 +72,3 @@ Q: “Drag-and-drop de carte cassé”
 * Embeds Godot-4-specific advice on signals, autoload conflicts, and folder hygiene :contentReference[oaicite:7]{index=7}.
 * Adds explicit link to *Keep-a-Changelog* & SemVer conventions :contentReference[oaicite:8]{index=8}.
 ```
-
