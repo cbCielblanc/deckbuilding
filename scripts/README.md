@@ -8,6 +8,8 @@ This folder collects all gameplay logic. Each GDScript stays loaded so managers 
 - Handle card data, decks and in-game effects.
 - Provide AI behaviours and multiplayer RPCs through `NetworkManager`.
 - Offer small helpers such as `Logger` and `SaveManager`.
+- Spawn `BoardUI` and `HandUI` when a match starts.
+- Use tabs for indentation so Godot formatting stays consistent.
 
 ## Public APIs
 | File | Functions | Effect on game |
