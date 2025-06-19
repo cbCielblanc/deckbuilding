@@ -19,6 +19,7 @@ func _ready() -> void:
 	add_child(board)
 	add_child(terrain)
 	_spawn_players()
+	_init_ui()
 	board.init_board(players)
 	terrain.init(players)
 	_connect_signals()
@@ -26,19 +27,30 @@ func _ready() -> void:
 
 # ---------------------------------------------------------------- init joueurs
 func _spawn_players() -> void:
-	Logger.info("%s Join")
 	for i in biomes.size():
-		var p : Player
-		if i == ai_index:
-			p = preload("res://scripts/ai_pro.gd").new()
-		else:
-			p = preload("res://scripts/player.gd").new()
+			var p : Player
+			if i == ai_index:
+					p = preload("res://scripts/ai_pro.gd").new()
+			else:
+					p = preload("res://scripts/player.gd").new()
 
 		p.name     = "Player%d" % i     # ← nom explicite, utile pour BoardUI paths
 		p.biome    = biomes[i]
 		p.is_human = (i != ai_index)
-		add_child(p)
-		players.append(p)
+			add_child(p)
+			players.append(p)
+			Logger.info("%s Join" % p.name)
+
+func _init_ui() -> void:
+	var ui := $UI
+	for p in players:
+			var hand := preload("res://scenes/HandUI.tscn").instantiate()
+			hand.player_path = p.get_path()
+			ui.add_child(hand)
+
+			var board_ui := preload("res://scenes/BoardUI.tscn").instantiate()
+			board_ui.player_path = p.get_path()
+			ui.add_child(board_ui)
 
 # ---------------------------------------------------------------- signaux
 func _connect_signals() -> void:
