@@ -10,7 +10,7 @@ func _ready() -> void:
 	player.connect("hand_changed", Callable(self, "_refresh"))   # ← connection
 	_refresh()
 
-func _refresh() -> void:
+func _refresh(_p : Player = null) -> void:
 	# Nettoyage
 	for child in get_children():
 		remove_child(child)
