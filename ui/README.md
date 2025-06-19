@@ -1,0 +1,29 @@
+# UI
+
+## Why
+User interface scripts and scenes live here. They connect nodes to game managers via signals so that the board, shop and menus always reflect current gameplay.
+
+## Responsibilities
+- Render a player's hand, battlefield and shops (`HandUI`, `BoardUI`, `BiomeShopUI`).
+- Provide menus for solo and network play (`MainMenu`, `LobbyMenu`).
+- Support drag and drop of cards and show dialogs (`CardButton`, `MarketDialog`).
+- Present tutorial hints through `TutorialOverlay`.
+
+`HandUI`, `BoardUI`, `BiomeShopUI` and `MarketDialog` update text labels, spawn buttons and react to button presses. They do not expose functions; instead they listen for signals like `hand_changed` or `auction_open` to refresh their content. `LobbyMenu` manages the network lobby by connecting to `NetworkManager` signals. `MainMenu` transitions to the lobby or tutorial scenes.
+
+## Public APIs
+Only `TutorialOverlay` exposes calls so other nodes can show or hide tips when needed.
+
+| File | Functions | Effect on game |
+|------|-----------|----------------|
+| `tutorial_overlay.gd` | `show_tip(msg)`, `hide()` | Display or remove an instructional popup. |
+| Other UI scripts | *(no public functions)* | They update visuals when notified via signals. |
+
+## Example
+```gdscript
+var overlay := TutorialOverlay.new()
+add_child(overlay)
+overlay.show_tip("Drag a card")
+```
+
+Even without direct APIs, these scripts form the backbone of the player's experience. Any future additions to the HUD or dialogs should follow the same pattern: emit a signal from gameplay code, listen here, and update nodes in `ready` or signal callbacks.
