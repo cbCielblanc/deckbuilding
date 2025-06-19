@@ -10,10 +10,12 @@ func apply(e : Dictionary, src : Card, tgt = null) -> void:
 		"burn":          tgt.status.burn   += e.value
 		"poison":        tgt.status.poison += e.value
 		"draw":          src.owner.draw(e.value)
-		"mana":          src.owner.mana += e.value
-		src.owner.emit_stats()
-		"gain_gold":     src.owner.gold += e.value
-		src.owner.emit_stats()
+		"mana":
+			src.owner.mana += e.value
+			src.owner.emit_stats()
+		"gain_gold":
+			src.owner.gold += e.value
+			src.owner.emit_stats()
 		"charge":        src.charge += e.value
 		"blast":
 			if tgt: tgt.damage(e.value * src.charge)

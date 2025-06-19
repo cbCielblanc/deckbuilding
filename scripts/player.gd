@@ -29,7 +29,7 @@ func _ready() -> void:
 	deck.add(starter[1].copy())
 	for i in 8:
 		deck.add(CardDatabase.neutral()[0].copy())
-        deck.shuffle()
+		deck.shuffle()
 	emit_stats()
 
 func draw(n : int) -> void:
