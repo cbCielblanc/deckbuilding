@@ -1,0 +1,430 @@
+{
+  "neutral_structures": [
+	{
+	  "id": "obelisk_solar",
+	  "name": "Obélisque Solaire",
+	  "type": "structure",
+	  "hp": 3,
+	  "effects": {
+		"spring": { "action": "charge", "value": 2 },
+		"summer": { "action": "blast",  "value": 1 },
+		"winter": { "action": "reset_charge" }
+	  }
+	},
+	{
+	  "id": "statue_fertile",
+	  "name": "Statue Fertile",
+	  "type": "structure",
+	  "hp": 2,
+	  "effects": {
+		"spring": { "action": "draw",          "value": 1 },
+		"summer": { "action": "mana",          "value": 1 },
+		"autumn": { "action": "transform",     "new_id": "statue_withered" },
+		"winter": { "action": "penalty_draw",  "value": -1 }
+	  }
+	},
+	{
+	  "id": "forge_rituelle",
+	  "name": "Forge Rituelle",
+	  "type": "structure",
+	  "hp": 3,
+	  "effects": {
+		"spring": { "action": "create_token",  "token": "ingot", "atk": 0, "hp": 0 },
+		"summer": { "action": "consume_token", "token": "ingot", "effect": "team_atk", "value": 2 },
+		"autumn": { "action": "create_token",  "token": "ingot", "atk": 0, "hp": 0 }
+	  }
+	},
+	{
+	  "id": "chrono_menhir",
+	  "name": "Chrono-Menhir",
+	  "type": "structure",
+	  "hp": 3,
+	  "effects": {
+		"summer": { "action": "skip_segment"   },
+		"winter": { "action": "extend_season"  }
+	  }
+	},
+	{
+	  "id": "girouette_temporelle",
+	  "name": "Girouette Temporelle",
+	  "type": "structure",
+	  "hp": 2,
+	  "effects": {
+		"summer": { "action": "skip_segment"   },
+		"winter": { "action": "extend_season"  }
+	  }
+	},
+	{
+	  "id": "vanne_barometrique",
+	  "name": "Vanne Barométrique",
+	  "type": "structure",
+	  "hp": 3,
+	  "effects": {
+		"spring": { "action": "mana",      "value": 1 },
+		"autumn": { "action": "gain_gold", "value": 1 }
+	  }
+	},
+	{
+	  "id": "miroir_zenith",
+	  "name": "Miroir du Zénith",
+	  "type": "structure",
+	  "hp": 2,
+	  "effects": {
+		"summer": { "action": "team_atk", "value":  1 },
+		"winter": { "action": "team_atk", "value": -1 }
+	  }
+	},
+	{
+	  "id": "jardins_iteratifs",
+	  "name": "Jardins Itératifs",
+	  "type": "structure",
+	  "hp": 4,
+	  "effects": {
+		"spring": { "action": "draw", "value": 1 },
+		"autumn": { "action": "draw", "value": 1 }
+	  }
+	},
+	{
+	  "id": "tour_greffe",
+	  "name": "Tour de Greffe",
+	  "type": "structure",
+	  "hp": 3,
+	  "effects": {
+		"spring": { "action": "hp",  "value": 1 },
+		"summer": { "action": "atk", "value": 1 }
+	  }
+	},
+	{
+	  "id": "aqueduc_ancestral",
+	  "name": "Aqueduc Ancestral",
+	  "type": "structure",
+	  "hp": 3,
+	  "effects": {
+		"summer": { "action": "mana", "value": 1 },
+		"winter": { "action": "hp",   "value": 1 }
+	  }
+	},
+	{
+	  "id": "prisme_saisonnier",
+	  "name": "Prisme Saisonnier",
+	  "type": "structure",
+	  "hp": 2,
+	  "effects": {
+		"spring": { "action": "mana",      "value": 1 },
+		"summer": { "action": "draw",      "value": 1 },
+		"autumn": { "action": "gain_gold", "value": 1 },
+		"winter": { "action": "team_atk",  "value": 1 }
+	  }
+	},
+	{
+	  "id": "atelier_nomade",
+	  "name": "Atelier Nomade",
+	  "type": "structure",
+	  "hp": 2,
+	  "effects": {
+		"spring": { "action": "gain_gold", "value": 1 },
+		"summer": { "action": "mana",      "value": 1 },
+		"autumn": { "action": "draw",      "value": 1 },
+		"winter": { "action": "hp",        "value": 1 }
+	  }
+	},
+	{
+	  "id": "cairn_echo",
+	  "name": "Cairn d'Écho",
+	  "type": "structure",
+	  "hp": 3,
+	  "effects": {
+		"autumn": { "action": "team_atk", "value": 1 }
+	  }
+	},
+	{
+	  "id": "observatoire_lunaire",
+	  "name": "Observatoire Lunaire",
+	  "type": "structure",
+	  "hp": 2,
+	  "effects": {
+		"winter": { "action": "draw", "value": 2 }
+	  }
+	}
+  ],
+
+  "biome_cards": {
+	"Forest": [
+	  { "id": "dryad",     "name": "Dryade Vernale",      "type": "unit",      "biome": "Forest", "atk": 1, "hp": 3,
+		"effects": {
+		  "spring": { "action":"hp","value":1 },
+		  "summer": { "action":"atk","value":1 },
+		  "autumn": { "action":"camouflage" },
+		  "winter": { "action":"sleep" }
+		}},
+	  { "id": "oak_totem", "name": "Chêne-Totem",        "type": "structure", "biome": "Forest", "hp": 3,
+		"effects": {
+		  "spring": { "action":"mana",     "value":1 },
+		  "summer": { "action":"team_atk", "value":1 },
+		  "winter": { "action":"hp",       "value":-1 }
+		}},
+	  { "id": "lianes",   "name": "Lianes Liantes",       "type": "spell", "biome": "Forest",
+		"effects": {
+		  "spring": { "action":"root" },
+		  "winter": { "action":"hp", "value": -2 }
+		}},
+	  { "id": "sprite",   "name": "Sprite de Pollen",     "type": "unit",  "biome": "Forest", "atk":0,"hp":1,
+		"effects": {
+		  "spring": { "action":"draw","value":1 },
+		  "summer": { "action":"atk","value":2 }
+		}},
+	  { "id": "canopée",  "name": "Appel de la Canopée",  "type": "spell", "biome": "Forest",
+		"effects": { "summer": { "action":"team_atk","value":1 } }
+	  },
+	  { "id": "archer_bois", "name": "Archer du Bois-Haut", "type":"unit","biome":"Forest","atk":2,"hp":2,
+		"effects": { "summer": { "action":"atk","value":1 } }
+	  },
+	  { "id": "renouveau", "name": "Renouveau", "type":"spell","biome":"Forest",
+		"effects": { "spring": { "action":"hp","value":2 } }
+	  },
+	  { "id": "gardien_sève", "name": "Gardien de Sève", "type":"unit","biome":"Forest","atk":3,"hp":3,
+		"effects": { "autumn": { "action":"atk","value":1 } }
+	  },
+	  { "id": "mycélium", "name":"Souffle Mycélium","type":"spell","biome":"Forest",
+		"effects": { "autumn": { "action":"poison","value":1 } }
+	  },
+	  { "id": "faon","name":"Migration de Faons","type":"spell","biome":"Forest",
+		"effects":{
+		  "spring": { "action":"create_token","token":"faon","atk":1,"hp":1 },
+		  "autumn": { "action":"draw","value":2 }
+		}}
+	],
+
+	"Desert": [
+	  { "id":"djinn","name":"Djinn de Mirage","type":"unit","biome":"Desert","atk":2,"hp":2,
+		"effects":{
+		  "spring": { "action":"duplicate_phantom" },
+		  "summer": { "action":"atk","value":2 },
+		  "winter": { "action":"hp","value":-2 }
+		}},
+	  { "id":"tempete","name":"Tempête de Sable","type":"spell","biome":"Desert",
+		"effects":{
+		  "spring": { "action":"enemy_atk_mod","value":-1 },
+		  "summer": { "action":"enemy_atk_mod","value":-1 }
+		}},
+	  { "id":"caravane","name":"Caravane","type":"structure","biome":"Desert","hp":2,
+		"effects":{
+		  "spring": { "action":"gain_gold","value":1 },
+		  "summer": { "action":"gain_gold","value":1 },
+		  "autumn": { "action":"gain_gold","value":1 },
+		  "winter": { "action":"gain_gold","value":3 }
+		}},
+	  { "id":"oasis","name":"Oasis","type":"structure","biome":"Desert","hp":3,
+		"effects":{
+		  "spring": { "action":"hp","value":1 },
+		  "summer": { "action":"hp","value":1 },
+		  "autumn": { "action":"hp","value":1 }
+		}},
+	  { "id":"sirocco","name":"Voile du Sirocco","type":"spell","biome":"Desert",
+		"effects":{
+		  "summer": { "action":"enemy_atk_mod","value":-2 }
+		}},
+	  { "id":"golem","name":"Golem Siliceux","type":"unit","biome":"Desert","atk":3,"hp":4,
+		"effects":{ "spring": { "action":"hp","value":1 } }
+	  },
+	  { "id":"faucon","name":"Faucon du Bazar","type":"unit","biome":"Desert","atk":1,"hp":1,
+		"effects":{ "summer": { "action":"draw","value":1 } }
+	  },
+	  { "id":"passeur_dune","name":"Passeur des Dunes","type":"spell","biome":"Desert",
+		"effects":{ "autumn": { "action":"gain_gold","value":2 } }
+	  },
+	  { "id":"sable_mouvant","name":"Sables Mouvants","type":"spell","biome":"Desert",
+		"effects":{ "winter": { "action":"root" } }
+	  },
+	  { "id":"astrolabe","name":"Astrolabe Antique","type":"structure","biome":"Desert","hp":2,
+		"effects":{
+		  "summer": { "action":"mana","value":1 },
+		  "winter": { "action":"draw","value":1 }
+		}}
+	],
+
+	"Tundra": [
+	  { "id":"esprit","name":"Esprit Boréal","type":"unit","biome":"Tundra","atk":1,"hp":2,
+		"effects":{
+		  "spring": { "action":"hp","value":1 },
+		  "summer": { "action":"freeze_unit" },
+		  "autumn": { "action":"atk","value":1 },
+		  "winter": { "action":"atk","value":1 }
+		}},
+	  { "id":"neige","name":"Chute de Neige","type":"spell","biome":"Tundra",
+		"effects":{
+		  "spring": { "action":"freeze_unit" },
+		  "summer": { "action":"freeze_unit" },
+		  "autumn": { "action":"freeze_unit" }
+		}},
+	  { "id":"igloo","name":"Igloo","type":"structure","biome":"Tundra","hp":4,
+		"effects":{
+		  "spring": { "action":"hp","value":1 },
+		  "summer": { "action":"hp","value":1 },
+		  "winter": { "action":"hp","value":-2 }
+		}},
+	  { "id":"peche","name":"Pêche sur Glace","type":"spell","biome":"Tundra",
+		"effects":{
+		  "spring": { "action":"draw","value":1 },
+		  "summer": { "action":"draw","value":2 },
+		  "autumn": { "action":"draw","value":1 }
+		}},
+	  { "id":"vent","name":"Vent Thellurique","type":"spell","biome":"Tundra",
+		"effects":{
+		  "summer": { "action":"enemy_atk_mod","value":-2 },
+		  "winter": { "action":"enemy_atk_mod","value":-1 }
+		}},
+	  { "id":"huskie","name":"Meute Huskie","type":"unit","biome":"Tundra","atk":2,"hp":1,
+		"effects":{ "spring": { "action":"atk","value":1 } }
+	  },
+	  { "id":"givre","name":"Bombe de Givre","type":"spell","biome":"Tundra",
+		"effects":{ "summer": { "action":"freeze_unit" } }
+	  },
+	  { "id":"stalactite","name":"Stalactite Vive","type":"spell","biome":"Tundra",
+		"effects":{ "winter": { "action":"hp","value":-3 } }
+	  },
+	  { "id":"banquise","name":"Gardien Banquise","type":"unit","biome":"Tundra","atk":3,"hp":3,
+		"effects":{ "winter": { "action":"atk","value":1 } }
+	  },
+	  { "id":"aurore","name":"Aurore","type":"spell","biome":"Tundra",
+		"effects":{ "autumn": { "action":"draw","value":2 } }
+	  }
+	],
+
+	"Volcano": [
+	  { "id":"salamandre","name":"Salamandre","type":"unit","biome":"Volcano","atk":3,"hp":1,
+		"effects":{
+		  "spring": { "action":"burn","value":1 },
+		  "summer": { "action":"atk","value":1 },
+		  "autumn": { "action":"team_atk","value":2 }
+		}},
+	  { "id":"cratere","name":"Cratère","type":"structure","biome":"Volcano","hp":3,
+		"effects":{
+		  "spring": { "action":"burn","value":1 },
+		  "summer": { "action":"enemy_atk_mod","value":-1 },
+		  "winter": { "action":"enemy_atk_mod","value":-2 }
+		}},
+	  { "id":"eruption","name":"Éruption","type":"spell","biome":"Volcano",
+		"effects":{
+		  "summer": { "action":"enemy_atk_mod","value":-1 },
+		  "autumn": { "action":"enemy_atk_mod","value":-1 }
+		}},
+	  { "id":"roches","name":"Roches en Fusion","type":"spell","biome":"Volcano",
+		"effects":{
+		  "spring": { "action":"burn","value":1 },
+		  "summer": { "action":"burn","value":1 }
+		}},
+	  { "id":"forge_magma","name":"Forgeron Magma","type":"structure","biome":"Volcano","hp":3,
+		"effects":{
+		  "spring": { "action":"create_token","token":"lava","atk":0,"hp":0 },
+		  "summer": { "action":"consume_token","token":"lava","effect":"team_atk","value":2 },
+		  "winter": { "action":"hp","value":-2 }
+		}},
+	  { "id":"glaive","name":"Glaive Incandescent","type":"unit","biome":"Volcano","atk":4,"hp":2,
+		"effects":{ "summer": { "action":"atk","value":1 } }
+	  },
+	  { "id":"charbon","name":"Brasiers","type":"spell","biome":"Volcano",
+		"effects":{ "autumn": { "action":"burn","value":1 } }
+	  },
+	  { "id":"fournaise","name":"Fournaise","type":"structure","biome":"Volcano","hp":2,
+		"effects":{ "summer": { "action":"burn","value":1 } }
+	  },
+	  { "id":"rondeur","name":"Rondeur Magmatique","type":"unit","biome":"Volcano","atk":2,"hp":4 },
+	  { "id":"cendre","name":"Pluie de Cendres","type":"spell","biome":"Volcano",
+		"effects":{ "winter": { "action":"enemy_atk_mod","value":-1 } }
+	  }
+	],
+
+	"Swamp": [
+	  { "id":"melasse","name":"Mélasse","type":"spell","biome":"Swamp",
+		"effects":{
+		  "spring": { "action":"poison","value":1 },
+		  "summer": { "action":"poison","value":1 }
+		}},
+	  { "id":"sangsue","name":"Sangsue","type":"unit","biome":"Swamp","atk":2,"hp":2,
+		"effects":{
+		  "spring": { "action":"hp","value":1 },
+		  "summer": { "action":"atk","value":1 },
+		  "autumn": { "action":"atk","value":1 },
+		  "winter": { "action":"hp","value":-3 }
+		}},
+	  { "id":"brume","name":"Brume Putride","type":"structure","biome":"Swamp","hp":2,
+		"effects":{
+		  "spring": { "action":"enemy_atk_mod","value":-1 },
+		  "summer": { "action":"enemy_atk_mod","value":-2 },
+		  "winter": { "action":"hp","value":-2 }
+		}},
+	  { "id":"bourbier","name":"Bourbier","type":"structure","biome":"Swamp","hp":3,
+		"effects":{
+		  "spring": { "action":"enemy_atk_mod","value":-1 },
+		  "winter": { "action":"hp","value":-3 }
+		}},
+	  { "id":"croc","name":"Croc-Fange","type":"spell","biome":"Swamp",
+		"effects":{
+		  "summer": { "action":"hp","value":-3 },
+		  "winter": { "action":"hp","value":-1 }
+		}},
+	  { "id":"manticore","name":"Manticore Bourbeuse","type":"unit","biome":"Swamp","atk":3,"hp":3,
+		"effects":{ "autumn": { "action":"poison","value":1 } }
+	  },
+	  { "id":"limon","name":"Limon Acide","type":"spell","biome":"Swamp",
+		"effects":{ "spring": { "action":"hp","value":-2 } }
+	  },
+	  { "id":"ronces","name":"Ronces Fétides","type":"spell","biome":"Swamp",
+		"effects":{ "summer": { "action":"root" } }
+	  },
+	  { "id":"phago","name":"Phagocyte","type":"unit","biome":"Swamp","atk":1,"hp":4,
+		"effects":{ "summer": { "action":"hp","value":1 } }
+	  },
+	  { "id":"mare","name":"Mare Nocive","type":"structure","biome":"Swamp","hp":3,
+		"effects":{ "spring": { "action":"poison","value":1 } }
+	  }
+	],
+
+	"Reef": [
+	  { "id":"poissons","name":"Banc de Poissons","type":"unit","biome":"Reef","atk":1,"hp":1,
+		"effects":{
+		  "spring": { "action":"draw","value":1 },
+		  "summer": { "action":"atk","value":2 },
+		  "autumn": { "action":"team_atk","value":1 },
+		  "winter": { "action":"hp","value":-1 }
+		}},
+	  { "id":"maree","name":"Marée Montante","type":"spell","biome":"Reef",
+		"effects":{
+		  "spring": { "action":"mana","value":1 },
+		  "summer": { "action":"hp","value":1 }
+		}},
+	  { "id":"corail","name":"Corail-Forteresse","type":"structure","biome":"Reef","hp":5,
+		"effects":{
+		  "spring": { "action":"hp","value":1 },
+		  "summer": { "action":"hp","value":1 },
+		  "autumn": { "action":"hp","value":1 },
+		  "winter": { "action":"hp","value":-2 }
+		}},
+	  { "id":"raie","name":"Raie-Foudre","type":"unit","biome":"Reef","atk":2,"hp":1,
+		"effects":{
+		  "spring": { "action":"atk","value":1 },
+		  "summer": { "action":"enemy_atk_mod","value":-1 },
+		  "autumn": { "action":"atk","value":1 },
+		  "winter": { "action":"hp","value":-1 }
+		}},
+	  { "id":"courant","name":"Courant Ascendant","type":"spell","biome":"Reef",
+		"effects":{
+		  "summer": { "action":"team_atk","value":1 }
+		}},
+	  { "id":"requin","name":"Requin Récifal","type":"unit","biome":"Reef","atk":3,"hp":2 },
+	  { "id":"algue","name":"Algue Luminescente","type":"structure","biome":"Reef","hp":2,
+		"effects":{ "spring": { "action":"draw","value":1 } }
+	  },
+	  { "id":"perle","name":"Chasse aux Perles","type":"spell","biome":"Reef",
+		"effects":{ "autumn": { "action":"gain_gold","value":2 } }
+	  },
+	  { "id":"capitaine","name":"Capitaine Nautile","type":"unit","biome":"Reef","atk":2,"hp":3,
+		"effects":{ "summer": { "action":"team_atk","value":1 } }
+	  },
+	  { "id":"vortex","name":"Vortex Abyssal","type":"spell","biome":"Reef",
+		"effects":{ "winter": { "action":"hp","value":-3 } }
+	  }
+	]
+  }
+}

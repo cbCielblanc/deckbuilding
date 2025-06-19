@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://brehjy04f83eu"]
+
+[ext_resource type="Script" uid="uid://deamn65gcwdur" path="res://ui/board_ui.gd" id="1"]
+
+[node name="BoardUI" type="VBoxContainer"]
+anchors_preset = -1
+anchor_right = 0.5
+script = ExtResource("1")

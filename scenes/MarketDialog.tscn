@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr5tthfdaoti6"]
+
+[ext_resource type="Script" uid="uid://dyjqo2gy70c20" path="res://ui/market_dialog.gd" id="1"]
+
+[node name="MarketDialog" type="ConfirmationDialog"]
+title = "Enchère"
+script = ExtResource("1")
+
+[node name="Label" type="Label" parent="."]
+text = "Texte enchère"
