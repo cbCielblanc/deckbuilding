@@ -47,6 +47,9 @@ func _spawn_players() -> void:
 func _init_ui() -> void:
 	var ui := $UI
 	for p in players:
+			var stats := preload("res://scenes/StatsUI.tscn").instantiate()
+			stats.player_path = p.get_path()
+			ui.add_child(stats)
 			var hand := preload("res://scenes/HandUI.tscn").instantiate()
 			hand.player_path = p.get_path()
 			ui.add_child(hand)

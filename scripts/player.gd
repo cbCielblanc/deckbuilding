@@ -4,6 +4,7 @@ class_name Player
 signal turn_end(p : Player)
 signal defeated(p : Player)
 signal hand_changed(p : Player)          # ← nouveau signal
+signal stats_changed(p : Player)
 
 @export var biome    : String = "Forest"
 @export var is_human : bool   = true
@@ -18,6 +19,9 @@ var units       : Array[Card] = []
 var structures  : Array[Card] = []
 var tokens      : Dictionary  = {}
 
+func emit_stats() -> void:
+	emit_signal("stats_changed", self)
+
 func _ready() -> void:
 	add_child(deck)
 	var starter : Array = CardDatabase.biome(biome)
@@ -25,7 +29,8 @@ func _ready() -> void:
 	deck.add(starter[1].copy())
 	for i in 8:
 		deck.add(CardDatabase.neutral()[0].copy())
-	deck.shuffle()
+        deck.shuffle()
+	emit_stats()
 
 func draw(n : int) -> void:
 	hand += deck.draw_n(n)
@@ -35,6 +40,7 @@ func start_turn() -> void:
 	Logger.info("start_turn")
 	mana = 3
 	draw(5)
+	emit_stats()
 	if !is_human:
 		_ai_play()
 
@@ -65,6 +71,7 @@ func consume_token(name:String, eff:String, val:int) -> void:
 
 func take_direct_dmg(v:int) -> void:
 	life -= v
+	emit_stats()
 	if life <= 0:
 		emit_signal("defeated", self)
 
