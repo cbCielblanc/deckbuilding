@@ -15,13 +15,10 @@ High level design material lives here so new contributors can quickly understand
 
 Each document should be concise so the folder remains readable. When implementing a new feature, check if any diagrams need updates and add an ADR entry if the change alters the project's direction.
 
-## Example Outline
-```md
-# architecture.md
-- GameManager orchestrates SeasonManager and BoardManager.
-- NetworkManager handles lobby then relays RPC to GameManager.
-```
 
 Thorough documentation saves time during onboarding and ensures gameplay behaviour is reproducible. Keep commit messages and ADRs in sync so there is a clear history of why systems exist.
 
 Regularly review this folder when planning sprints. Outdated diagrams lead to confusion during playtesting and can slow down onboarding. Keeping notes accurate helps maintain design coherence across code and content.
+
+## Usage
+Consult these documents before major refactors or feature additions. They act as the project's reference point for architecture and terminology.
