@@ -25,7 +25,8 @@ func close():
 	var win:Player = null; var high := -1
 	for p in bids: if bids[p] > high: high = bids[p]; win = p
 	if win:
-		win.gold -= high
-		win.structures.append(current)
+			win.gold -= high
+			win.emit_stats()
+			win.structures.append(current)
 	emit_signal("auction_close", current, win)
 	current = null

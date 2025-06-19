@@ -18,6 +18,7 @@ func buy(p:Player, idx:int):
 	var c := stock[idx]
 	p.gold    -= 4
 	p.essence -= 2
+	p.emit_stats()
 	p.deck.add(c.copy())
 	stock.remove_at(idx)
 	emit_signal("bought", p, c)
