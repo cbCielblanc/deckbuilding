@@ -20,9 +20,5 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 | `Main.tscn` | Contains battle board and managers. |
 | `MarketDialog.tscn` | Popup for the neutral auction house. |
 
-## Example Usage
-```gdscript
-get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
-```
 
 Scenes rarely contain code beyond hooking up their child nodes. When adding a new scene, keep scripts minimal and delegate behaviour to a manager in `scripts/` or UI controller in `ui/` so the structure stays maintainable.

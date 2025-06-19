@@ -19,11 +19,5 @@ Only `TutorialOverlay` exposes calls so other nodes can show or hide tips when n
 | `tutorial_overlay.gd` | `show_tip(msg)`, `hide()` | Display or remove an instructional popup. |
 | Other UI scripts | *(no public functions)* | They update visuals when notified via signals. |
 
-## Example
-```gdscript
-var overlay := TutorialOverlay.new()
-add_child(overlay)
-overlay.show_tip("Drag a card")
-```
 
 Even without direct APIs, these scripts form the backbone of the player's experience. Any future additions to the HUD or dialogs should follow the same pattern: emit a signal from gameplay code, listen here, and update nodes in `ready` or signal callbacks.

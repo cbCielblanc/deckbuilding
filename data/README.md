@@ -16,12 +16,6 @@ Each card entry includes fields like `id`, `name`, `type`, `atk`, `hp` and a map
 
 When the file grows large, keep cards grouped by biome and sorted alphabetically to avoid merge conflicts. Non designers should refrain from hand editing values during playtesting; use the editor or a dedicated script to modify cards.
 
-## Example
-```gdscript
-var json_text = FileAccess.open("res://data/card_data.json", FileAccess.READ).get_as_text()
-var data = JSON.parse_string(json_text)
-print(data.biome_cards.keys())
-```
 
 Future expansions may include creature animations or localisation strings which would live beside the card file. Use similar schema conventions so `CardDatabase` can load them reliably.
 
