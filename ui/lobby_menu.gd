@@ -11,8 +11,9 @@ class_name LobbyMenu
 var net : NetworkManager = null
 
 func _ready() -> void:
-        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-        DisplayServer.window_set_size(Vector2i(1280, 720))
+        if not Engine.is_editor_hint():
+                DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+                DisplayServer.window_set_size(Vector2i(1280, 720))
         start_btn.disabled = true
         players_lbl.text   = "Players: 1"
         status_lbl.text    = "Idle"
@@ -54,8 +55,9 @@ func _on_ready() -> void:
 
 # ------------------------------------------------------------- démarrer partie
 func _on_StartButton_pressed() -> void:
-        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-        DisplayServer.window_set_size(Vector2i(1920, 1080))
+        if not Engine.is_editor_hint():
+                DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+                DisplayServer.window_set_size(Vector2i(1920, 1080))
         var main := preload("res://scenes/Main.tscn").instantiate()
         get_tree().root.add_child(main)
         queue_free()
