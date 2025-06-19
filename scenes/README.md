@@ -10,8 +10,8 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 - Supply tutorial overlays that appear during the first run.
 
 ## Flow
-`MainMenu.tscn` loads first and lets the player choose solo, network or tutorial. Menus display in a 1280×720 window so the game launches in a compact mode. In multiplayer the `LobbyMenu.tscn` waits until enough peers join before moving to `Main.tscn`. When a match begins, the window switches to exclusive fullscreen at 1920×1080. These size changes are disabled inside the editor to avoid "Embedded window" errors. During play the board and terrain are spawned under `GameManager`. Dialogs for the market and biome shop are instantiated only when opened, keeping the scene tree lean.
 
+`MainMenu.tscn` loads first and lets the player choose solo, network or tutorial. Menus display in a 1280×720 window so the game launches in a compact mode. In multiplayer the `LobbyMenu.tscn` waits until enough peers join before moving to `Main.tscn`. When a match begins, the window switches to exclusive fullscreen at 1920×1080. These size changes are disabled inside the editor to avoid "Embedded window" errors. During play the board and terrain are spawned under `GameManager`. Dialogs for the market and biome shop are instantiated only when opened, keeping the scene tree lean.
 
 ## Key Scenes
 | Scene | Purpose |
