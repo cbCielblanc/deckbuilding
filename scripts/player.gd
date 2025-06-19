@@ -32,6 +32,7 @@ func draw(n : int) -> void:
 	emit_signal("hand_changed", self)    # ← déclenche la mise à jour UI
 
 func start_turn() -> void:
+	Logger.info("start_turn")
 	mana = 3
 	draw(5)
 	if !is_human:
