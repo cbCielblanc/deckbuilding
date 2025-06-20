@@ -42,4 +42,3 @@ func _refresh() -> void:
 			var lbl := Label.new()
 			lbl.text = "[S] %s  (%d PV)" % [s.name, s.hp]
 			add_child(lbl)
-
