@@ -5,7 +5,7 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 
 ## Responsibilities
 - Provide entry points such as `MainMenu.tscn` and `LobbyMenu.tscn`.
-- Host the main gameplay tree in `Main.tscn` with `GameManager` as root.
+- Host the main gameplay tree in `Main.tscn` with `GameManager` as a `Node2D` root so terrain and board visuals appear.
 - Include UI fragments like `BoardUI.tscn`, `HandUI.tscn` and shop dialogs.
 - Supply tutorial overlays that appear during the first run.
 
