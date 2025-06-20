@@ -56,6 +56,7 @@ func _init_ui() -> void:
 
 			var board_ui := preload("res://scenes/BoardUI.tscn").instantiate()
 			board_ui.player_path = p.get_path()
+			board_ui.board_path  = board.get_path()
 			ui.add_child(board_ui)
 
 # ---------------------------------------------------------------- signaux

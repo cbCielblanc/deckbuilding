@@ -1,6 +1,8 @@
 extends Node
 class_name BoardManager
 
+signal board_changed(player)
+
 var width  := 5
 var height := 3
 var grids  : Dictionary = {}                 # player -> 2-D array Card
@@ -31,6 +33,7 @@ func place_card(p, card:Card, x:int, y:int) -> bool:
 	else:
 		p.structures.append(card)
 	Logger.info("Placed %s at %d,%d" % [card.name, x, y])
+	emit_signal("board_changed", p)
 	return true
 
 # -------------------------------------------------------------- déplacement
@@ -44,14 +47,19 @@ func move_unit(p, from_x:int, from_y:int, to_x:int, to_y:int) -> bool:
 		return false
 	grids[p][from_x][from_y] = null
 	grids[p][to_x][to_y]     = c
+	emit_signal("board_changed", p)
 	return true
 
 # -------------------------------------------------------------- nettoyage
 func remove_dead():
 	for p in grids:
+		var changed := false
 		for x in width:
 			for y in height:
 				var c : Card = grids[p][x][y]
 				if c and c.hp <= 0:
 					grids[p][x][y] = null
+					changed = true
 					Logger.info("%s destroyed at %d,%d" % [c.name, x, y])
+		if changed:
+			emit_signal("board_changed", p)

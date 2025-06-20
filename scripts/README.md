@@ -16,7 +16,7 @@ This folder collects all gameplay logic. Each GDScript stays loaded so managers 
 |------|-----------|----------------|
 | `battle_manager.gd` | `destroy(card)->void`, `unit_vs_unit(a,d)->void`, `full_attack(att,def)->void` | Resolve combat and remove dead units. |
 | `biome_shop.gd` | `buy(player, idx)->void` | Give a biome card to the player. |
-| `board_manager.gd` | `init_board(players)->void`, `place_card(p,card,x,y)->bool`, `move_unit(p,x1,y1,x2,y2)->bool`, `remove_dead()->void` | Maintain board grid and unit lists. |
+| `board_manager.gd` | signal `board_changed(p)`, `init_board(players)->void`, `place_card(p,card,x,y)->bool`, `move_unit(p,x1,y1,x2,y2)->bool`, `remove_dead()->void` | Maintain board grid and notify UI when slots update. |
 | `card.gd` | `copy()->Card`, `damage(v)->void` | Duplicate card or apply damage. |
 | `card_database.gd` | `neutral()->Array`, `biome(b)->Array` | Provide card templates. |
 | `deck.gd` | `shuffle()->void`, `draw_n(n)->Array`, `add(card)->void` | Manage player deck ordering. |
