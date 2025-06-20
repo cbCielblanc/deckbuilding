@@ -5,6 +5,7 @@ signal turn_end(p : Player)
 signal defeated(p : Player)
 signal hand_changed(p : Player)          # ← nouveau signal
 signal stats_changed(p : Player)
+signal board_changed(p : Player)
 
 @export var biome    : String = "Forest"
 @export var is_human : bool   = true
@@ -21,6 +22,9 @@ var tokens      : Dictionary  = {}
 
 func emit_stats() -> void:
 	emit_signal("stats_changed", self)
+
+func emit_board() -> void:
+	emit_signal("board_changed", self)
 
 func _ready() -> void:
 	add_child(deck)
