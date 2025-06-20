@@ -69,6 +69,6 @@ Q: “Drag-and-drop de carte cassé”
 ### Key improvements
 * **Folder list reflects reality** (`scripts/`, `ui/`, `scenes/`, `data/`, `assets/`, `docs/`).
 * Tight **200-token** sections keep each README digestible :contentReference[oaicite:6]{index=6}.
-* Embeds Godot-4-specific advice on signals, autoload conflicts, and folder hygiene :contentReference[oaicite:7]{index=7}.
+* Embeds Godot-4-specific advice on signals, tabs, autoload conflicts, and folder hygiene :contentReference[oaicite:7]{index=7}.
 * Adds explicit link to *Keep-a-Changelog* & SemVer conventions :contentReference[oaicite:8]{index=8}.
 ```
