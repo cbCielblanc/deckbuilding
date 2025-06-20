@@ -11,7 +11,8 @@ User interface scripts and scenes live here. They connect nodes to game managers
 - `CardButton` sizes icons based on the window (`size_ratio` export) and
   sets `expand_icon` so large textures shrink to fit.
 - Present tutorial hints through `TutorialOverlay`.
-- UI scripts keep tab indentation so Godot formatting stays uniform.
+- UI scripts keep tab indentation so Godot formatting stays uniform. `BoardUI`
+  now follows this convention after the latest cleanup.
 
 During play, the HUD divides the screen into three bands: `StatsUI` spans the
 top, `BoardUI` fills the middle, and `HandUI` anchors to the bottom. Each panel
@@ -19,8 +20,10 @@ uses anchors instead of hard-coded coordinates so the layout scales with the
 window size.
 
 `BoardUI` builds a `GridContainer` sized by `BoardManager.width` and
-`BoardManager.height`. Each cell shows the occupying card name or a dash when
-empty so players can track unit placement even before any cards are played.
+`BoardManager.height`. Each cell now contains two labels: the occupying card
+name (or a dash when empty) and a second line for stats. Units display their
+`attack` and `hp` as "atk/hp" while structures show "HP: x". This keeps key
+information visible at a glance.
 
 `HandUI`, `BoardUI`, `StatsUI`, `BiomeShopUI` and `MarketDialog` update text labels, spawn buttons and react to button presses. They do not expose functions; instead they listen for signals like `hand_changed`, `stats_changed` or `auction_open` to refresh their content. `LobbyMenu` manages the network lobby by connecting to `NetworkManager` signals. `MainMenu` transitions to the lobby or tutorial scenes and keeps the window in a 1280×720 launcher mode. When a game starts, both menus switch the display to exclusive fullscreen at 1920×1080.
 
