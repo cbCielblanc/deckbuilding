@@ -30,7 +30,7 @@ This folder collects all gameplay logic. Each GDScript stays loaded so managers 
 | `save_manager.gd` | `save_run(state)->void`, `load_run()->Dictionary` | Persist or load run state. |
 | `season_manager.gd` | `reset()->void`, `current()->String`, `advance_segment()->void` | Cycle through seasons and emit signals. |
 | `terrain_manager.gd` | `init(players)->void`, `season_update(season)->void` | Spawn and update terrain tiles. |
-| `terrain_tile.gd` | `set_biome(b)`, `apply_season(season)`, `set_color(color)`, `highlight(on)` | Load optional biome textures, tint per season and show hover highlight. |
+| `terrain_tile.gd` | `set_biome(b)`, `apply_season(season)`, `set_color(color)`, `highlight(on)` | Uses a hidden `Control` child to detect hover; loads biome textures and tints tiles per season. |
 | `tutorial_manager.gd` | `start()->void`, `on_action(tag)->void` | Drive tutorial step by step. |
 | `ai_pro.gd`, `ai_swarm.gd` | *(no public API)* | Internal AI routines. |
 
