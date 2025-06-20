@@ -16,11 +16,12 @@ var _base_color : Color = Color.WHITE
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var shadow : Sprite2D = $Shadow
+@onready var clickable : Control = $Clickable
 
 func _ready() -> void:
-	set_biome(biome)
-	sprite.mouse_entered.connect(Callable(self, "_on_mouse_entered"))
-	sprite.mouse_exited.connect(Callable(self, "_on_mouse_exited"))
+        set_biome(biome)
+        clickable.mouse_entered.connect(Callable(self, "_on_mouse_entered"))
+        clickable.mouse_exited.connect(Callable(self, "_on_mouse_exited"))
 
 	if sprite.texture == null:
 		var img := Image.create(64, 64, false, Image.FORMAT_RGBA8)
