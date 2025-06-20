@@ -32,7 +32,7 @@ func _refresh() -> void:
 				var lbl := Label.new()
 				lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				var c : Card = board.grids[player][x][y]
-				lbl.text = c ? c.name : "-"
+				lbl.text = c.name if c else "-"
 				grid.add_child(lbl)
 		add_child(grid)
 
