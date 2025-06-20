@@ -12,6 +12,11 @@ User interface scripts and scenes live here. They connect nodes to game managers
   sets `expand_icon` so large textures shrink to fit.
 - Present tutorial hints through `TutorialOverlay`.
 
+During play, the HUD divides the screen into three bands: `StatsUI` spans the
+top, `BoardUI` fills the middle, and `HandUI` anchors to the bottom. Each panel
+uses anchors instead of hard-coded coordinates so the layout scales with the
+window size.
+
 `HandUI`, `BoardUI`, `StatsUI`, `BiomeShopUI` and `MarketDialog` update text labels, spawn buttons and react to button presses. They do not expose functions; instead they listen for signals like `hand_changed`, `stats_changed` or `auction_open` to refresh their content. `LobbyMenu` manages the network lobby by connecting to `NetworkManager` signals. `MainMenu` transitions to the lobby or tutorial scenes and keeps the window in a 1280×720 launcher mode. When a game starts, both menus switch the display to exclusive fullscreen at 1920×1080.
 
 ## Public APIs
