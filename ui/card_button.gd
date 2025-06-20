@@ -6,10 +6,21 @@ class_name CardButton
 
 var card_data : Card
 
+const CARD_TEXTURES := {
+       "Forest": preload("res://assets/cards/forest_card.png"),
+       "Desert": preload("res://assets/cards/desert_card.png"),
+       "Reef": preload("res://assets/cards/reef_card.png"),
+       "Swamp": preload("res://assets/cards/swamp_card.png"),
+       "Tundra": preload("res://assets/cards/tundra_card.png"),
+       "Volcano": preload("res://assets/cards/volcano_card.png"),
+       "Neutral": preload("res://assets/cards/neutral_structure.png")
+}
+
 signal dragged(card : Card)
 
 func _ready() -> void:
 	text = card_data.name
+	icon = CARD_TEXTURES.get(card_data.biome, CARD_TEXTURES["Neutral"])
 
 func _gui_input(event : InputEvent) -> void:
 	if event is InputEventMouseButton \

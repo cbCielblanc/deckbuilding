@@ -18,6 +18,7 @@ Only `TutorialOverlay` exposes calls so other nodes can show or hide tips when n
 | File | Functions | Effect on game |
 |------|-----------|----------------|
 | `tutorial_overlay.gd` | `show_tip(msg)`, `hide()` | Display or remove an instructional popup. |
+| `card_button.gd` | signal `dragged(card)` | Sends the card when the player drags its icon. |
 | Other UI scripts | *(no public functions)* | They update visuals when notified via signals. |
 
 
