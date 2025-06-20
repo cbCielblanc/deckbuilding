@@ -6,6 +6,9 @@ class_name CardButton
 
 var card_data : Card
 
+# Percentage of the screen width this button should occupy.
+@export var size_ratio : float = 0.1
+
 const CARD_TEXTURES := {
        "Forest": preload("res://assets/cards/forest_card.png"),
        "Desert": preload("res://assets/cards/desert_card.png"),
@@ -19,8 +22,11 @@ const CARD_TEXTURES := {
 signal dragged(card : Card)
 
 func _ready() -> void:
-	text = card_data.name
-	icon = CARD_TEXTURES.get(card_data.biome, CARD_TEXTURES["Neutral"])
+        text = card_data.name
+        icon = CARD_TEXTURES.get(card_data.biome, CARD_TEXTURES["Neutral"])
+        expand_icon = true
+        var width := get_viewport_rect().size.x * size_ratio
+        custom_minimum_size = Vector2(width, width * 1.5)
 
 func _gui_input(event : InputEvent) -> void:
 	if event is InputEventMouseButton \
