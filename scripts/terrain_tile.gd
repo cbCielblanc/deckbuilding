@@ -19,9 +19,9 @@ var _base_color : Color = Color.WHITE
 @onready var clickable : Control = $Clickable
 
 func _ready() -> void:
-        set_biome(biome)
-        clickable.mouse_entered.connect(Callable(self, "_on_mouse_entered"))
-        clickable.mouse_exited.connect(Callable(self, "_on_mouse_exited"))
+	set_biome(biome)
+	clickable.mouse_entered.connect(Callable(self, "_on_mouse_entered"))
+	clickable.mouse_exited.connect(Callable(self, "_on_mouse_exited"))
 
 	if sprite.texture == null:
 		var img := Image.create(64, 64, false, Image.FORMAT_RGBA8)
@@ -36,7 +36,7 @@ func apply_season(season:String) -> void:
 
 func set_biome(b:String) -> void:
 	biome = b
-	var tex_path := BIOME_TEXTURE_PATHS.get(biome.to_lower())
+	var tex_path: String = BIOME_TEXTURE_PATHS.get(biome.to_lower(), "")
 	if tex_path:
 		var tex := load(tex_path)
 		if tex:

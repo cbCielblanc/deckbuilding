@@ -45,7 +45,7 @@ func update_visuals() -> void:
 				t.set_color(_color_for(t.biome, current_season))
 
 func _color_for(biome:String, season:String) -> Color:
-	var base := {
+	var base : Color = {
 		"Forest": Color(0.2, 0.6, 0.2),
 		"Volcano": Color(0.7, 0.2, 0.2),
 		"Desert": Color(0.8, 0.75, 0.5),
@@ -61,4 +61,3 @@ func _color_for(biome:String, season:String) -> Color:
 			return base.darkened(0.2)
 		_:
 			return base
-
