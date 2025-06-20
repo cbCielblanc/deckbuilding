@@ -29,7 +29,7 @@ func _refresh() -> void:
 			for x in board.width:
 				var lbl := Label.new()
 				var c : Card = board.grids[player][x][y]
-				lbl.text = c ? c.name : "-"
+				lbl.text = c.name if c else "-"
 				row.add_child(lbl)
 			add_child(row)
 
