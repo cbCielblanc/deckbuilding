@@ -19,6 +19,7 @@ func init_board(players:Array) -> void:
 				col.append(null)
 			g.append(col)
 		grids[p] = g
+	EventBus.emit("board_changed")
 
 # -------------------------------------------------------------- placement
 func place_card(p, card:Card, x:int, y:int) -> bool:
@@ -31,6 +32,8 @@ func place_card(p, card:Card, x:int, y:int) -> bool:
 	else:
 		p.structures.append(card)
 	Logger.info("Placed %s at %d,%d" % [card.name, x, y])
+	p.emit_board()
+	EventBus.emit("board_changed")
 	return true
 
 # -------------------------------------------------------------- déplacement
@@ -44,6 +47,8 @@ func move_unit(p, from_x:int, from_y:int, to_x:int, to_y:int) -> bool:
 		return false
 	grids[p][from_x][from_y] = null
 	grids[p][to_x][to_y]     = c
+	p.emit_board()
+	EventBus.emit("board_changed")
 	return true
 
 # -------------------------------------------------------------- nettoyage
@@ -55,3 +60,5 @@ func remove_dead():
 				if c and c.hp <= 0:
 					grids[p][x][y] = null
 					Logger.info("%s destroyed at %d,%d" % [c.name, x, y])
+					c.owner.emit_board()
+					EventBus.emit("board_changed")
