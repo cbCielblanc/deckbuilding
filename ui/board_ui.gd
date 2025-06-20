@@ -29,11 +29,28 @@ func _refresh() -> void:
 		grid.columns = board.width
 		for y in board.height:
 			for x in board.width:
-				var lbl := Label.new()
-				lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				var cell := VBoxContainer.new()
 				var c : Card = board.grids[player][x][y]
-				lbl.text = c.name if c else "-"
-				grid.add_child(lbl)
+
+				var lbl_name := Label.new()
+				lbl_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				lbl_name.text = c.name if c else "-"
+				cell.add_child(lbl_name)
+
+				var lbl_stats := Label.new()
+				lbl_stats.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				if c:
+					if c.card_type == constants.CardType.UNIT:
+						lbl_stats.text = "%d/%d" % [c.atk, c.hp]
+					elif c.card_type == constants.CardType.STRUCTURE:
+						lbl_stats.text = "HP: %d" % c.hp
+					else:
+						lbl_stats.text = ""
+				else:
+					lbl_stats.text = ""
+				cell.add_child(lbl_stats)
+
+				grid.add_child(cell)
 		add_child(grid)
 
 	# 3) afficher les structures
