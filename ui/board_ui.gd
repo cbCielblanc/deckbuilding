@@ -18,20 +18,23 @@ func _on_event(tag:String, _payload:Dictionary) -> void:
 
 # ----------------------------------------------------------------- refresh
 func _refresh() -> void:
-	# 1) vider proprement le VBoxContainer
+	# 1) nettoyer le container
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
-	# 2) afficher la grille
+
+	# 2) grille de jeu
 	if board and board.grids.has(player):
+		var grid := GridContainer.new()
+		grid.columns = board.width
 		for y in board.height:
-			var row := HBoxContainer.new()
 			for x in board.width:
 				var lbl := Label.new()
+				lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				var c : Card = board.grids[player][x][y]
 				lbl.text = c.name if c else "-"
-				row.add_child(lbl)
-			add_child(row)
+				grid.add_child(lbl)
+		add_child(grid)
 
 	# 3) afficher les structures
 	if player.structures.size() > 0:
