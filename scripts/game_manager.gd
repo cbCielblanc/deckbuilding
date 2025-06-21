@@ -23,6 +23,7 @@ func play_card(card:Card, p:Player) -> void:
 	p.mana -= cost
 	p.emit_stats()
 	p.hand.erase(card)
+	p.emit_signal("hand_changed", p)
 
 	if card.card_type == constants.CardType.SPELL:
 		var eff : Dictionary = card.effects.get(SeasonManager.current(), {})
@@ -34,6 +35,7 @@ func play_card(card:Card, p:Player) -> void:
 		var pos := _find_slot(p)
 		if pos:
 			board.place_card(p, card, pos.x, pos.y)
+			board.remove_dead()
 	EventBus.emit("card_played")
 
 func _find_slot(p:Player) -> Vector2i:
@@ -104,6 +106,7 @@ func _connect_signals() -> void:
 # ---------------------------------------------------------------- callbacks
 func _on_turn_end(p : Player) -> void:
 	BattleManager.full_attack(p, p.opponent())
+	board.remove_dead()
 
 	turn_idx = (turn_idx + 1) % players.size()
 	if turn_idx == 0:
@@ -119,6 +122,7 @@ func _season_tick(_season:int) -> void:
 			if u.status.burn   > 0: u.damage(u.status.burn)
 			if u.status.poison > 0: u.damage(u.status.poison)
 			if u.status.frozen > 0: u.status.frozen = 0
+	board.remove_dead()
 
 func _on_season_start(_season:int) -> void:
 	terrain.season_update(SeasonManager.current())
