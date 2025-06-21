@@ -21,6 +21,7 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 | `MainMenu.tscn` | Buttons to start solo or online mode with a background. |
 | `LobbyMenu.tscn` | Connects peers and displays player list. |
 | `Main.tscn` | Contains battle board, managers and a background. |
+| `HistoryUI.tscn` | Panel showing the action log on the right side. |
 | `MarketDialog.tscn` | Popup for the neutral auction house. |
 | `TerrainTile.tscn` | Visual tile with drop shadow, a transparent `Control` overlay and a `Label` that shows the biome name. |
 

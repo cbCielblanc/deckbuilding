@@ -12,7 +12,7 @@ static func destroy(c : Card) -> void:
 static func unit_vs_unit(a:Card, d:Card) -> void:
 	d.damage(a.atk)
 	if d.hp > 0:
-		a.damage(d.atk)
+	a.damage(d.atk)
 
 static func full_attack(att:Player, def:Player) -> void:
 	var i := 0
@@ -23,6 +23,8 @@ static func full_attack(att:Player, def:Player) -> void:
 		if def.units.size() > 0:
 			var v := def.units[0]
 			unit_vs_unit(u, v)
+			EventBus.emit("history", {"msg": "%s attaque %s" % [u.name, v.name]})
 		else:
 			def.take_direct_dmg(u.atk)
+			EventBus.emit("history", {"msg": "%s attaque %s directement" % [u.name, def.name]})
 		i += 1
