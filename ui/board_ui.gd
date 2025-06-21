@@ -18,18 +18,18 @@ func _on_event(tag:String, _payload:Dictionary) -> void:
 
 # ----------------------------------------------------------------- refresh
 func _refresh() -> void:
-        # 1) nettoyer le container
-        for child in get_children():
-                remove_child(child)
-                child.queue_free()
+	# 1) nettoyer le container
+	for child in get_children():
+		remove_child(child)
+		child.queue_free()
 
-        # Nom du joueur
-        var head := Label.new()
-        head.text = player.name
-        head.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-        add_child(head)
+	# Nom du joueur
+	var head := Label.new()
+	head.text = player.name
+	head.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	add_child(head)
 
-        # 2) grille de jeu
+	# 2) grille de jeu
 	if board and board.grids.has(player):
 		var grid := GridContainer.new()
 		grid.columns = board.width
@@ -74,10 +74,10 @@ func _refresh() -> void:
 		add_child(grid)
 
 	# 3) afficher les structures
-        if player.structures.size() > 0:
-                var head_struct := Label.new()
-                head_struct.text = "Structures:"
-                add_child(head_struct)
+		if player.structures.size() > 0:
+				var head_struct := Label.new()
+				head_struct.text = "Structures:"
+				add_child(head_struct)
 		for s in player.structures:
 			var lbl := Label.new()
 			lbl.text = "[S] %s  (%d PV)" % [s.name, s.hp]

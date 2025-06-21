@@ -22,35 +22,35 @@ const CARD_TEXTURES := {
 signal dragged(card : Card)
 
 func _ready() -> void:
-                text = card_data.name
-                icon = CARD_TEXTURES.get(card_data.biome, CARD_TEXTURES["Neutral"])
-                expand_icon = true
-                var width := get_viewport_rect().size.x * size_ratio
-                custom_minimum_size = Vector2(width, width * 1.5)
+	text = card_data.name
+	icon = CARD_TEXTURES.get(card_data.biome, CARD_TEXTURES["Neutral"])
+	expand_icon = true
+	var width := get_viewport_rect().size.x * size_ratio
+	custom_minimum_size = Vector2(width, width * 1.5)
 
-                # tooltip avec coût et statistiques
-                var cost := 3
-                match card_data.card_type:
-                        constants.CardType.UNIT: cost = 2
-                        constants.CardType.SPELL: cost = 1
+				# tooltip avec coût et statistiques
+	var cost := 3
+	match card_data.card_type:
+		constants.CardType.UNIT: cost = 2
+		constants.CardType.SPELL: cost = 1
 
-                var stat_text := ""
-                if card_data.card_type == constants.CardType.UNIT:
-                        stat_text = "%d/%d" % [card_data.atk, card_data.hp]
-                elif card_data.card_type == constants.CardType.STRUCTURE:
-                        stat_text = "HP: %d" % card_data.hp
+	var stat_text := ""
+	if card_data.card_type == constants.CardType.UNIT:
+		stat_text = "%d/%d" % [card_data.atk, card_data.hp]
+	elif card_data.card_type == constants.CardType.STRUCTURE:
+		stat_text = "HP: %d" % card_data.hp
 
-                var effect_str := ""
-                for key in card_data.effects.keys():
-                        effect_str += "%s: %s\n" % [key, card_data.effects[key].to_string()]
+	var effect_str := ""
+	for key in card_data.effects.keys():
+		effect_str += "%s: %s\n" % [key, card_data.effects[key].to_string()]
 
-                tooltip_text = "Coût: %d\nStats: %s\n%s" % [cost, stat_text, effect_str]
+	tooltip_text = "Coût: %d\nStats: %s\n%s" % [cost, stat_text, effect_str]
 
-                pressed.connect(_on_pressed)
+	pressed.connect(_on_pressed)
 
 func _gui_input(event : InputEvent) -> void:
-        if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-                emit_signal("dragged", card_data)
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+				emit_signal("dragged", card_data)
 
 func _on_pressed() -> void:
-        emit_signal("dragged", card_data)
+		emit_signal("dragged", card_data)
