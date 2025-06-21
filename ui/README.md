@@ -22,7 +22,7 @@ Players can click a unit then select a destination tile to move it. Dragging wor
 | File | Functions | Effect |
 |------|-----------|-------|
 | `tutorial_overlay.gd` | `show_tip(msg)`, `hide()` | Toggle tutorial popups. |
-| `card_button.gd` | signal `dragged(card)` | Emits when dragging a card icon. |
+| `card_button.gd` | signal `dragged(card)` | Emits when dragging a card icon and shows season effect summaries. |
 | Other scripts | *(none)* | Listen for events and refresh the HUD. |
 
 When a card is dragged, `HandUI` forwards the signal to `GameManager.play_card`. Menus run at 1280×720 in windowed mode, then switch to fullscreen at 1920×1080 when a match begins. Full layout notes live in `details.md`.
