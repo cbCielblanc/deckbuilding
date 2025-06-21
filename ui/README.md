@@ -4,7 +4,7 @@
 User interface scripts and scenes live here. They connect nodes to game managers via signals so that the board, shop and menus always reflect current gameplay.
 
 ## Responsibilities
-- Render a player's hand, battlefield and shops (`HandUI`, `BoardUI`, `BiomeShopUI`).
+- Render a player's hand, battlefield and shops (`HandUI`, `BoardUI`, `BiomeShopUI`) and the action log (`HistoryUI`).
 - `HandUI` and `StatsUI` are only instantiated for human players so AI opponents never create overlapping HUD elements.
 - Display resources such as life and gold (`StatsUI`) and provide an **End** button to finish the turn.
 - Provide menus for solo and network play (`MainMenu`, `LobbyMenu`).
@@ -21,6 +21,7 @@ User interface scripts and scenes live here. They connect nodes to game managers
 During play, the HUD divides the screen into three bands: `StatsUI` spans the
 top, `BoardUI` fills the middle, and `HandUI` anchors to the bottom. Each panel
 uses anchors instead of hard-coded coordinates so the layout scales with the
+HistoryUI occupies the right quarter of the screen and lists recent events.
 window size.
 
 `BoardUI` builds a `GridContainer` sized by `BoardManager.width` and
