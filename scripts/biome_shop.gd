@@ -14,7 +14,8 @@ func _refill():
 	stock = pool.slice(0, size) as Array[Card]
 
 func buy(p:Player, idx:int):
-	if p.gold < 4 or p.essence < 2: return
+	if p.gold < 4 or p.essence < 2:
+		return
 	var c := stock[idx]
 	p.gold    -= 4
 	p.essence -= 2
@@ -24,4 +25,5 @@ func buy(p:Player, idx:int):
 	p.emit_signal("hand_changed", p)
 	stock.remove_at(idx)
 	emit_signal("bought", p, copy)
-	if stock.is_empty(): _refill()
+	if stock.is_empty():
+		_refill()

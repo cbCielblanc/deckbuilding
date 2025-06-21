@@ -6,6 +6,12 @@ signal season_end(season   : int)
 signal segment_tick(season : int, segment : int)
 
 const SEGMENTS_PER_SEASON := 4
+const SEASON_BIOMES := {
+	"spring": "Forest",
+	"summer": "Desert",
+	"autumn": "Swamp",
+	"winter": "Tundra"
+}
 var season  : int
 var segment : int
 
@@ -19,6 +25,9 @@ func reset() -> void:
 
 func current() -> String:
 	return constants.SEASON_NAMES[season]
+
+func current_biome() -> String:
+	return SEASON_BIOMES.get(current(), "Forest")
 
 func advance_segment() -> void:
 	segment += 1
