@@ -25,11 +25,11 @@ func _ready() -> void:
 	clickable.mouse_exited.connect(Callable(self, "_on_mouse_exited"))
 
 	if sprite.texture == null:
-		var img := Image.create(64, 64, false, Image.FORMAT_RGBA8)
-		img.fill(Color.WHITE)
-		var tex := ImageTexture.create_from_image(img)
-		sprite.texture = tex
-		shadow.texture = tex
+	var img := Image.create(64, 64, false, Image.FORMAT_RGBA8)
+	img.fill(Color.WHITE)
+	var tex := ImageTexture.create_from_image(img)
+	sprite.texture = tex
+	shadow.texture = tex
 
 func apply_season(season:String) -> void:
 	if season_modifier.has(season):
