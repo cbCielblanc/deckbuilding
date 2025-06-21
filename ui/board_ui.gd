@@ -68,6 +68,33 @@ func _refresh() -> void:
 				else:
 					lbl_stats.text = ""
 				box.add_child(lbl_stats)
+				var lbl_cost := Label.new()
+				lbl_cost.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				if c:
+					var cost := 0
+					match c.card_type:
+						constants.CardType.UNIT:
+							cost = 2
+						constants.CardType.SPELL:
+							cost = 1
+						_:
+							cost = 3
+					lbl_cost.text = "Cost: %d" % cost
+				else:
+					lbl_cost.text = ""
+				box.add_child(lbl_cost)
+
+				var lbl_eff := Label.new()
+				lbl_eff.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				if c:
+					var actions : Array[String] = []
+					for key in c.effects.keys():
+						var eff : Dictionary = c.effects[key]
+						actions.append(eff.get("action", ""))
+					lbl_eff.text = "Eff: %s" % ", ".join(actions)
+				else:
+					lbl_eff.text = ""
+				box.add_child(lbl_eff)
 
 				cell.add_child(box)
 				grid.add_child(cell)
