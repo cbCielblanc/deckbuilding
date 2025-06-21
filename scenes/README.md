@@ -7,9 +7,9 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 - Provide entry points such as `MainMenu.tscn` and `LobbyMenu.tscn`.
 - Host the main gameplay tree in `Main.tscn` with `GameManager` as a `Node2D` root so terrain and board visuals appear.
 - Include UI fragments like `BoardsPanel.tscn`, `BoardUI.tscn`, `HandUI.tscn` and shop dialogs.
- - `StatsUI` sits at the top of the canvas with an **End** button, `BoardsPanel` holds multiple `BoardUI` instances in the center and
+ - `StatsUI` sits at the top of the canvas with an **End** button, `BoardsPanel` centers the player boards with extra spacing and holds multiple `BoardUI` instances in the middle while
    `HandUI` anchors to the bottom so gameplay information is clearly separated.
- - `TutorialOverlay.tscn` shows hints when running the tutorial.
+- `TutorialOverlay.tscn` shows hints when running the tutorial.
 
 ## Flow
 

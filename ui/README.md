@@ -17,6 +17,8 @@ User interface scripts and scenes live here. They connect nodes to game managers
 - Present tutorial hints through `TutorialOverlay`.
 - UI scripts keep tab indentation so Godot formatting stays uniform. `BoardUI`
   now uses tabs exclusively after removing stray spaces.
+- `BoardUI` listens to both the global `board_changed` event and each player's
+  own `board_changed` signal so opponent boards refresh immediately.
 
 During play, the HUD divides the screen into three bands: `StatsUI` spans the
 top, `BoardsPanel` fills the middle and holds one `BoardUI` per player, and
