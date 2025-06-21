@@ -14,7 +14,7 @@ Gameplay logic and autoloaded singletons live here. Keeping them together lets m
 - `BiomeShop` draws four cards from the current biome and any purchase adds the
   chosen card directly to the buyer's hand.
 
-`GameManager.play_card` emits `hand_changed` so the UI refreshes and calls `BoardManager.remove_dead` after resolving effects. AI opponents call the same method so structures spawn without extra triggers. `BoardManager` rebuilds the grid and emits `board_changed` whenever units move. Tutorial steps use `TutorialManager.start()` and `on_action(tag)`.
+`GameManager.play_card` emits `hand_changed` so the UI refreshes and calls `BoardManager.remove_dead` after resolving effects. AI opponents call the same method so structures spawn without extra triggers. `Player.start_turn` now also grants one essence in addition to resetting mana. `BoardManager` rebuilds the grid and emits `board_changed` whenever units move. Tutorial steps use `TutorialManager.start()` and `on_action(tag)`.
 
 ## Key APIs
 | Script | Functions |
