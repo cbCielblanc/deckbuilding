@@ -148,4 +148,3 @@ func _on_cell_input(event: InputEvent, x: int, y: int) -> void:
 				selected_from = Vector2i(-1, -1)
 				_refresh()
 				EventBus.emit("board_changed")
-
