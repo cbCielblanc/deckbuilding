@@ -5,7 +5,7 @@ enum Season {SPRING, SUMMER, AUTUMN, WINTER}
 enum CardType {UNIT, SPELL, STRUCTURE}
 
 const SEASON_NAMES := ["spring", "summer", "autumn", "winter"]
-const START_LIFE   := 20
+const START_LIFE   := 1000
 
 # French labels for seasons so UI can display readable effect summaries.
 const SEASON_LABELS := {
