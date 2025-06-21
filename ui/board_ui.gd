@@ -139,12 +139,18 @@ func _refresh() -> void:
 func _on_cell_input(event: InputEvent, x: int, y: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			var c: Card = board.grids[player][x][y]
-			if c and c.card_type == constants.CardType.UNIT:
-				selected_from = Vector2i(x, y)
-		else:
-			if selected_from.x != -1:
+			if selected_from.x == -1:
+				var c: Card = board.grids[player][x][y]
+				if c and c.card_type == constants.CardType.UNIT:
+					selected_from = Vector2i(x, y)
+			else:
 				board.move_unit(player, selected_from.x, selected_from.y, x, y)
 				selected_from = Vector2i(-1, -1)
 				_refresh()
 				EventBus.emit("board_changed")
+	else:
+		if selected_from.x != -1:
+			board.move_unit(player, selected_from.x, selected_from.y, x, y)
+			selected_from = Vector2i(-1, -1)
+			_refresh()
+			EventBus.emit("board_changed")
