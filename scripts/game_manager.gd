@@ -33,7 +33,7 @@ func play_card(card:Card, p:Player) -> void:
 		EffectProcessor.apply(eff, card, tgt)
 	else:
 		var pos := _find_slot(p)
-		if pos:
+		if pos.x >= 0:
 			board.place_card(p, card, pos.x, pos.y)
 			board.remove_dead()
 	EventBus.emit("card_played")
