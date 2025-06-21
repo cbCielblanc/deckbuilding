@@ -23,9 +23,8 @@ signal dragged(card : Card)
 
 func _ready() -> void:
 	text = ""
-	icon = null
-	expand_icon = false
-	icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	icon = CARD_TEXTURES.get(card_data.biome, CARD_TEXTURES["Neutral"])
+	expand_icon = true
 	var width := get_viewport_rect().size.x * size_ratio
 	custom_minimum_size = Vector2(width, width * 1.5)
 

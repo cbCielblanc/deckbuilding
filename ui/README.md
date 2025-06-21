@@ -9,10 +9,11 @@ User interface scripts and scenes live here. They connect nodes to game managers
 - Display resources such as life and gold (`StatsUI`) and provide an **End** button to finish the turn.
 - Provide menus for solo and network play (`MainMenu`, `LobbyMenu`).
 - Support drag and drop of cards and show dialogs (`CardButton`, `MarketDialog`).
-- `CardButton` sizes icons based on the window (`size_ratio` export). It
-  shows a centred `TextureRect` for the artwork and stacks four labels
-  underneath: name, stats, mana cost and effect names. Hovering reveals
-  a tooltip with the same information.
+- `CardButton` sizes icons based on the window (`size_ratio` export) and
+  uses its built‑in `icon` property to display the card artwork. A
+  `VBoxContainer` inside the button stacks four labels beneath the icon:
+  name, stats, mana cost and effect names. Hovering reveals the same
+  details in a tooltip.
 - Present tutorial hints through `TutorialOverlay`.
 - UI scripts keep tab indentation so Godot formatting stays uniform. `BoardUI`
   now uses tabs exclusively after removing stray spaces.
