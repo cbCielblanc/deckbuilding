@@ -55,6 +55,12 @@ func _ready() -> void:
 	box.anchor_right = 1.0
 	box.anchor_bottom = 1.0
 
+	var icon_rect := TextureRect.new()
+	icon_rect.expand = true
+	icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon_rect.texture = CARD_TEXTURES.get(card_data.biome, CARD_TEXTURES["Neutral"])
+	box.add_child(icon_rect)
+
 	var lbl_name := Label.new()
 	lbl_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lbl_name.text = card_data.name
