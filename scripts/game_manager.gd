@@ -126,14 +126,35 @@ func _on_turn_end(p : Player) -> void:
 
 func _season_tick(_season:int) -> void:
 	for pl in players:
-			for u in pl.units:
-					if u.status.burn   > 0: u.damage(u.status.burn)
-					if u.status.poison > 0: u.damage(u.status.poison)
-					if u.status.frozen > 0: u.status.frozen = 0
+		for u in pl.units:
+			if u.status.burn   > 0:
+		u.damage(u.status.burn)
+			if u.status.poison > 0:
+		u.damage(u.status.poison)
+			if u.status.frozen > 0:
+		u.status.frozen = 0
+	board.remove_dead()
+
+func _apply_season_effects() -> void:
+	var season := SeasonManager.current()
+	for pl in players:
+		for c in pl.units + pl.structures:
+			if c.effects.has(season):
+		var eff : Dictionary = c.effects[season]
+			var tgt : Card = c
+		match eff.get("action", ""):
+			"burn", "poison", "root", "freeze_unit", "blast":
+		if pl.opponent().units.size() > 0:
+			tgt = pl.opponent().units[0]
+	else:
+	tgt = null
+	EffectProcessor.apply(eff, c, tgt)
 	board.remove_dead()
 
 func _on_season_start(_season:int) -> void:
-	terrain.season_update(SeasonManager.current())
+terrain.season_update(SeasonManager.current())
+
+	_apply_season_effects()
 
 	var shop := BiomeShop.new()
 	shop.biome = SeasonManager.current_biome()
