@@ -17,7 +17,12 @@ func _refresh(_p : Player = null) -> void:
 		child.queue_free()
 
 	# Reconstruction de la main
-	for c in player.hand:
-		var btn := preload("res://scenes/CardButton.tscn").instantiate()
-		btn.card_data = c
-		add_child(btn)
+        for c in player.hand:
+                var btn := preload("res://scenes/CardButton.tscn").instantiate()
+                btn.card_data = c
+                btn.dragged.connect(_on_card_dragged.bind(c))
+                add_child(btn)
+
+func _on_card_dragged(card:Card) -> void:
+        var gm := get_tree().get_root().get_node("Main")
+        gm.play_card(card, player)

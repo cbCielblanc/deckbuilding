@@ -19,3 +19,6 @@ text = "Essence:"
 
 [node name="Mana" type="Label" parent="."]
 text = "Mana:"
+
+[node name="EndTurn" type="Button" parent="."]
+text = "End"

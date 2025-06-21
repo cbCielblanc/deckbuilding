@@ -12,6 +12,40 @@ class_name GameManager
 var players  : Array[Player] = []
 var turn_idx : int = 0
 
+func play_card(card:Card, p:Player) -> void:
+        var cost := 0
+        match card.card_type:
+                constants.CardType.UNIT:
+                        cost = 2
+                constants.CardType.SPELL:
+                        cost = 1
+                _:
+                        cost = 3
+        if p.mana < cost:
+                return
+        p.mana -= cost
+        p.emit_stats()
+        p.hand.erase(card)
+
+        if card.card_type == constants.CardType.SPELL:
+                var eff : Dictionary = card.effects.get(SeasonManager.current(), {})
+                var tgt : Card = null
+                if p.opponent().units.size() > 0:
+                        tgt = p.opponent().units[0]
+                EffectProcessor.apply(eff, card, tgt)
+        else:
+                var pos := _find_slot(p)
+                if pos:
+                        board.place_card(p, card, pos.x, pos.y)
+        EventBus.emit("event", "card_played")
+
+func _find_slot(p:Player) -> Vector2i:
+        for y in board.height:
+                for x in board.width:
+                        if board.grids[p][x][y] == null:
+                                return Vector2i(x, y)
+        return Vector2i(-1, -1)
+
 # ---------------------------------------------------------------- ready
 func _ready() -> void:
 	SeasonManager.reset()
@@ -96,7 +130,11 @@ func _on_defeat(p : Player) -> void:
 
 # ---------------------------------------------------------------- RPC helpers
 func remote_play_card(_card_id:String, _owner_id:int) -> void:
-	pass
+        var p := players[_owner_id]
+        for c in p.hand:
+                if c.cid == _card_id:
+                        play_card(c, p)
+                        break
 
 func remote_end_turn(_owner_id:int) -> void:
-	pass
+        players[_owner_id].end_turn()

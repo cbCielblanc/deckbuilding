@@ -5,7 +5,7 @@ User interface scripts and scenes live here. They connect nodes to game managers
 
 ## Responsibilities
 - Render a player's hand, battlefield and shops (`HandUI`, `BoardUI`, `BiomeShopUI`).
-- Display resources such as life and gold (`StatsUI`).
+- Display resources such as life and gold (`StatsUI`) and provide an **End** button to finish the turn.
 - Provide menus for solo and network play (`MainMenu`, `LobbyMenu`).
 - Support drag and drop of cards and show dialogs (`CardButton`, `MarketDialog`).
 - `CardButton` sizes icons based on the window (`size_ratio` export) and
@@ -25,7 +25,7 @@ occupying card name (or a dash when empty) and a second line for stats. Units
 display their `attack` and `hp` as "atk/hp" while structures show "HP: x". The
 panels expand to fill the available width so the board appears as a neat grid.
 
-`HandUI`, `BoardUI`, `StatsUI`, `BiomeShopUI` and `MarketDialog` update text labels, spawn buttons and react to button presses. They do not expose functions; instead they listen for signals like `hand_changed`, `stats_changed` or `auction_open` to refresh their content. `LobbyMenu` manages the network lobby by connecting to `NetworkManager` signals. `MainMenu` transitions to the lobby or tutorial scenes and keeps the window in a 1280×720 launcher mode. When a game starts, both menus switch the display to exclusive fullscreen at 1920×1080.
+`HandUI` connects each `CardButton` to `GameManager.play_card` when dragged so cards are played instantly. `BoardUI`, `StatsUI`, `BiomeShopUI` and `MarketDialog` update text labels or buttons when notified via signals like `hand_changed`, `stats_changed` or `auction_open`. `LobbyMenu` manages the network lobby by connecting to `NetworkManager` signals. `MainMenu` transitions to the lobby or tutorial scenes and keeps the window in a 1280×720 launcher mode. When a game starts, both menus switch the display to exclusive fullscreen at 1920×1080.
 
 ## Public APIs
 Only `TutorialOverlay` exposes calls so other nodes can show or hide tips when needed.

@@ -29,13 +29,16 @@ func _on_MultiButton_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/LobbyMenu.tscn")
 
 func _on_TutoButton_pressed() -> void:
-	DisplayServer.window_set_size(Vector2i(1920, 1080))
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	var main := preload("res://scenes/Main.tscn").instantiate()
-	get_tree().root.add_child(main)
-	var tuto := preload("res://scripts/tutorial_manager.gd").new()
-	main.add_child(tuto)
-	tuto.start()
+        DisplayServer.window_set_size(Vector2i(1920, 1080))
+        DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+        var main := preload("res://scenes/Main.tscn").instantiate()
+        get_tree().root.add_child(main)
+        var tuto := preload("res://scripts/tutorial_manager.gd").new()
+        var overlay := preload("res://scenes/TutorialOverlay.tscn").instantiate()
+        main.add_child(overlay)
+        main.add_child(tuto)
+        tuto.overlay_path = overlay.get_path()
+        tuto.start()
 
 func _on_QuitButton_pressed() -> void:
 	get_tree().quit()
