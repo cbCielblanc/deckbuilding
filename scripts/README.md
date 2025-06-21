@@ -22,7 +22,7 @@ This folder collects all gameplay logic. Each GDScript stays loaded so managers 
 | `deck.gd` | `shuffle()->void`, `draw_n(n)->Array`, `add(card)->void` | Manage player deck ordering. |
 | `effect_processor.gd` | `apply(effect, src, tgt)->void` | Execute card effect dictionaries. |
 | `event_bus.gd` | `emit(tag, payload={})->void` | Broadcast global events. |
-| `game_manager.gd` | `remote_play_card(id,owner)->void`, `remote_end_turn(owner)->void` | Remote players interact via RPC. |
+| `game_manager.gd` | `play_card(card,p)->void`, `remote_play_card(id,owner)->void`, `remote_end_turn(owner)->void` | Handle card use locally and for network peers. |
 | `logger.gd` | `info(msg)->void`, `warn(msg)->void`, `error(msg)->void` | Simple logging facility. |
 | `market_manager.gd` | `open()->void`, `bid(player,amt)->void`, `close()->void` | Handle shop bidding rounds. |
 | `network_manager.gd` | `rpc_play_card(id,owner)->void`, `rpc_end_turn(owner)->void` | Forward network RPC to GameManager. |
