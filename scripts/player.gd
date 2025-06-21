@@ -37,7 +37,10 @@ func _ready() -> void:
 	emit_stats()
 
 func draw(n : int) -> void:
-	hand += deck.draw_n(n)
+	var drawn := deck.draw_n(n)
+	for c in drawn:
+	c.owner = self
+	hand += drawn
 	emit_signal("hand_changed", self)    # ← déclenche la mise à jour UI
 
 func start_turn() -> void:

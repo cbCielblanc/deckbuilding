@@ -37,7 +37,12 @@ func apply(e : Dictionary, src : Card, tgt = null) -> void:
 		"sleep":         src.status.sleep = 1
 		"freeze_unit":   if tgt:
 			tgt.status.frozen = 1
-		"enemy_atk_mod": for u in src.owner.opponent().units: u.atk += e.value
+		"enemy_atk_mod":
+			if src.owner:
+				var opp := src.owner.opponent()
+				if opp:
+					for u in opp.units:
+						u.atk += e.value
 		"create_token":  src.owner.summon_token(e.token, e.atk, e.hp)
 		"consume_token": src.owner.consume_token(e.token, e.effect, e.value)
 		"duplicate_phantom":

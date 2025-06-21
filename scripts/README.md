@@ -12,6 +12,7 @@ Gameplay logic and autoloaded singletons live here. Keeping them together lets m
 - Spawn a `BiomeShop` at every season start so players can buy biome cards.
 - Apply card effects each season through `GameManager._apply_season_effects`.
 - `EffectProcessor.apply` skips status effects if no target exists to avoid null errors.
+- `Player.draw` assigns owners to drawn cards so spells target correctly.
 - `SeasonManager.current_biome()` maps the active season to a biome name.
 - `BiomeShop` draws four cards from the current biome and any purchase adds the
   chosen card directly to the buyer's hand.
