@@ -12,6 +12,8 @@ This is the Godot project root. Key folders:
 - `assets/` textures and icons
 - `docs/` architecture notes
 
+### Repository notes
+- Temporary `.tmp` scene files are git-ignored.
 ### Running
 1. Install Godot 4.4.1.
 2. Run `godot4 .` or open `project.godot` in the editor. `MainMenu.tscn` starts by default.
