@@ -10,7 +10,7 @@ extends Resource
 @export var max_hp   : int
 @export var effects  : Dictionary        # par saison ou clés spéciales
 
-var owner  : Player
+var owner  : Node
 var charge : int = 0
 var status : Dictionary = {
 	"burn":0, "poison":0, "rooted":false, "sleep":0,
