@@ -26,6 +26,7 @@ Gameplay logic and autoloaded singletons live here. Keeping them together lets m
 | `player.gd` | `draw(n)`, `start_turn()`, `end_turn()`, signal `board_changed(p)` |
 | `season_manager.gd` | `reset()`, `current()`, `advance_segment()` |
 | `effect_processor.gd` | `apply(effect, src, tgt)` |
+| `constants.gd` | `describe_effect(effect)` |
 | Helpers | `Logger.info(msg)`, `SaveManager.save_run(state)` |
 
 Example: when a player uses a card, `GameManager.play_card` updates the board then `NetworkManager` forwards the RPC so peers stay in sync.

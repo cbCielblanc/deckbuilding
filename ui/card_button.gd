@@ -42,12 +42,15 @@ func _ready() -> void:
 	elif card_data.card_type == constants.CardType.STRUCTURE:
 		stat_text = "HP: %d" % card_data.hp
 
-	var actions : Array[String] = []
-	for key in card_data.effects.keys():
-		var e: Dictionary = card_data.effects[key]
-		actions.append(e.get("action", ""))
+	var effects_text : Array[String] = []
+	for s in constants.SEASON_NAMES:
+		if card_data.effects.has(s):
+		var e: Dictionary = card_data.effects[s]
+		var desc := constants.describe_effect(e)
+		var season := constants.SEASON_LABELS.get(s, s.capitalize())
+		effects_text.append("%s: %s" % [season, desc])
 
-	tooltip_text = "Coût: %d\nStats: %s\n%s" % [cost, stat_text, "\n".join(actions)]
+	tooltip_text = "Coût: %d\nStats: %s\n%s" % [cost, stat_text, "\n".join(effects_text)]
 
 	var box := VBoxContainer.new()
 	box.anchor_left = 0.0
@@ -76,10 +79,10 @@ func _ready() -> void:
 	lbl_cost.text = "Cost: %d" % cost
 	box.add_child(lbl_cost)
 
-	var lbl_eff := Label.new()
-	lbl_eff.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	lbl_eff.text = "Eff: %s" % ", ".join(actions)
-	box.add_child(lbl_eff)
+	       var lbl_eff := Label.new()
+	       lbl_eff.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	       lbl_eff.text = "Eff: %s" % " | ".join(effects_text)
+	       box.add_child(lbl_eff)
 
 	add_child(box)
 	pressed.connect(_on_pressed)
