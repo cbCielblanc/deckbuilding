@@ -9,7 +9,7 @@ This folder collects all gameplay logic. Each GDScript stays loaded so managers 
 - Provide AI behaviours and multiplayer RPCs through `NetworkManager`.
 - Offer small helpers such as `Logger` and `SaveManager`.
 - Spawn `BoardUI` and `HandUI` when a match starts.
-- Use tabs for indentation so Godot formatting stays consistent.
+- All scripts use tabs for indentation; `terrain_manager.gd` was cleaned up to match.
 
 ## Public APIs
 | File | Functions | Effect on game |
@@ -29,7 +29,7 @@ This folder collects all gameplay logic. Each GDScript stays loaded so managers 
 | `player.gd` | `draw(n)->void`, `start_turn()->void`, `end_turn()->void`, `opponent()->Player`, `summon_token(name,atk,hp)->void`, `consume_token(name,eff,val)->void`, `take_direct_dmg(v)->void`, signal `board_changed(p)` | Manage a player's resources and board presence. |
 | `save_manager.gd` | `save_run(state)->void`, `load_run()->Dictionary` | Persist or load run state. |
 | `season_manager.gd` | `reset()->void`, `current()->String`, `advance_segment()->void` | Cycle through seasons and emit signals. |
-| `terrain_manager.gd` | `init(players)->void`, `season_update(season)->void` | Spawn and update terrain tiles. |
+| `terrain_manager.gd` | `init(players)->void`, `season_update(season)->void`, `groups_for_biome(b)->Array` | Spawn terrain tiles and expose groups per biome. |
 | `terrain_tile.gd` | `set_biome(b)`, `apply_season(season)`, `set_color(color)`, `highlight(on)` | Each tile now includes a `Label` showing its biome and still uses a hidden `Control` for hover detection. |
 | `tutorial_manager.gd` | `start()->void`, `on_action(tag)->void` | Drive tutorial step by step. |
 | `ai_pro.gd`, `ai_swarm.gd` | *(no public API)* | Internal AI routines. |
