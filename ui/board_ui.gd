@@ -11,7 +11,8 @@ func _ready() -> void:
 	board = get_node(board_path)
 	EventBus.connect("event", Callable(self, "_on_event"))
 	if player:
-		player.connect("board_changed", Callable(self, "_refresh"))
+	player.connect("board_changed", Callable(self, "_refresh"))
+	player.connect("stats_changed", Callable(self, "_refresh"))
 	_refresh()
 
 func _on_event(tag:String, _payload:Dictionary) -> void:
@@ -30,6 +31,22 @@ func _refresh() -> void:
 	head.text = player.name
 	head.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	add_child(head)
+
+	# Statistiques du joueur
+	var stats := HBoxContainer.new()
+	var lbl_life := Label.new()
+	lbl_life.text = "Life: %d" % player.life
+	stats.add_child(lbl_life)
+	var lbl_gold := Label.new()
+	lbl_gold.text = "Gold: %d" % player.gold
+	stats.add_child(lbl_gold)
+	var lbl_ess := Label.new()
+	lbl_ess.text = "Essence: %d" % player.essence
+	stats.add_child(lbl_ess)
+	var lbl_mana := Label.new()
+	lbl_mana.text = "Mana: %d" % player.mana
+	stats.add_child(lbl_mana)
+	add_child(stats)
 
 	# 2) grille de jeu
 	if board and board.grids.has(player):
