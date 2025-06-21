@@ -21,7 +21,8 @@ func _refresh(_p : Player = null) -> void:
 	for c in player.hand:
 		var btn := preload("res://scenes/CardButton.tscn").instantiate()
 		btn.card_data = c
-		btn.dragged.connect(_on_card_dragged.bind(c))
+		btn.dragged.connect(Callable(self, "_on_card_dragged"))
+		#btn.dragged.connect(_on_card_dragged.bind(c))
 		add_child(btn)
 
 func _on_card_dragged(card:Card) -> void:
