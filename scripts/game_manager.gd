@@ -133,7 +133,21 @@ func _season_tick(_season:int) -> void:
 	board.remove_dead()
 
 func _on_season_start(_season:int) -> void:
-	terrain.season_update(SeasonManager.current())
+        terrain.season_update(SeasonManager.current())
+
+        var shop := BiomeShop.new()
+        shop.biome = SeasonManager.current()
+        add_child(shop)
+
+        var dialog : BiomeShopUI = preload("res://scenes/BiomeShopDialog.tscn").instantiate()
+        dialog.shop_path = shop.get_path()
+        $UI.add_child(dialog)
+        shop.connect("bought", Callable(self, "_on_shop_bought").bind(dialog, shop))
+        dialog.popup_centered()
+
+func _on_shop_bought(_p:Player, _c:Card, dialog:BiomeShopUI, shop:BiomeShop) -> void:
+        dialog.hide()
+        shop._refill()
 
 func _on_defeat(p : Player) -> void:
 	Logger.info("%s lost – Game Over" % p.name)

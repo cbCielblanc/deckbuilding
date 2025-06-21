@@ -8,11 +8,12 @@ UI scripts and scenes live here. They connect menu buttons and HUD nodes to game
 - Provide `MainMenu` and `LobbyMenu` for solo or online play.
 - Show resources and the end-turn button through `StatsUI`.
 - Support drag and drop via `CardButton` and open dialogs such as `MarketDialog`.
+- `BiomeShopUI` lists seasonal cards and hooks to `BiomeShop`.
 - Spawn `HandUI` and `StatsUI` only for human players to avoid AI HUD clutter.
 - Offer tutorial hints through `TutorialOverlay`.
 - Use anchored containers so layouts scale with window size.
 
-`StatsUI` spans the top, `BoardsPanel` holds one `BoardUI` per player in the middle and `HandUI` stays at the bottom. `HistoryUI` occupies the right edge. Signals like `hand_changed`, `board_changed` and `auction_open` keep every panel in sync. BoardUI also shows life, gold, essence and mana under each player's name. Each card preview uses the same `CardButton` layout so stats and costs stay consistent.
+`StatsUI` spans the top, `BoardsPanel` holds one `BoardUI` per player in the middle and `HandUI` stays at the bottom. `HistoryUI` occupies the right edge. Signals like `hand_changed`, `board_changed` and `auction_open` keep every panel in sync. BoardUI also shows life, gold, essence and mana under each player's name. Each card preview uses the same `CardButton` layout so stats and costs stay consistent. `BiomeShopUI` hides after a purchase and the shop refills before the next season.
 
 ## Public APIs
 | File | Functions | Effect |
