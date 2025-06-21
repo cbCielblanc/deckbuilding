@@ -13,7 +13,7 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 
 ## Flow
 
-`MainMenu.tscn` loads first and lets the player choose solo, network or tutorial. Menus display in a 1280×720 window so the game launches in a compact mode. In multiplayer the `LobbyMenu.tscn` waits until enough peers join before moving to `Main.tscn`. When a match begins, the window switches to exclusive fullscreen at 1920×1080. During play the board and terrain are spawned under `GameManager`. Dialogs for the market and biome shop are instantiated only when opened, keeping the scene tree lean.
+`MainMenu.tscn` loads first and lets the player choose solo, network or tutorial. Menus display in a 1280×720 window so the game launches in a compact mode. In multiplayer the `LobbyMenu.tscn` waits until enough peers join before moving to `Main.tscn`. When a match begins, the window switches to exclusive fullscreen at 1920×1080. During play the board and terrain are spawned under `GameManager`. Dialogs for the market and biome shop are instantiated only when opened, keeping the scene tree lean. `GameManager` spawns `BiomeShopDialog` at every season start so players can purchase biome cards before the first turn.
 
 ## Key Scenes
 | Scene | Purpose |
@@ -23,6 +23,7 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 | `Main.tscn` | Contains battle board, managers and a background. |
 | `HistoryUI.tscn` | Panel showing the action log on the right side. |
 | `MarketDialog.tscn` | Popup for the neutral auction house. |
+| `BiomeShopDialog.tscn` | Popup showing seasonal cards at the start of each season. |
 | `TerrainTile.tscn` | Visual tile with drop shadow, a transparent `Control` overlay and a `Label` that shows the biome name. |
 
 
