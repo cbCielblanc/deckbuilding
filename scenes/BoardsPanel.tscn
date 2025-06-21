@@ -1,0 +1,7 @@
+[gd_scene load_steps=1 format=3]
+
+[node name="BoardsPanel" type="HBoxContainer"]
+anchors_preset = -1
+anchor_right = 0.75
+anchor_top = 0.1
+anchor_bottom = 0.8

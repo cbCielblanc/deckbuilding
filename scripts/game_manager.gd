@@ -81,6 +81,8 @@ func _spawn_players() -> void:
 
 func _init_ui() -> void:
 	var ui := $UI
+	var boards_panel := preload("res://scenes/BoardsPanel.tscn").instantiate()
+	ui.add_child(boards_panel)
 	for p in players:
 		if p.is_human:
 			var stats := preload("res://scenes/StatsUI.tscn").instantiate()
@@ -94,7 +96,8 @@ func _init_ui() -> void:
 		var board_ui := preload("res://scenes/BoardUI.tscn").instantiate()
 		board_ui.player_path = p.get_path()
 		board_ui.board_path  = board.get_path()
-		ui.add_child(board_ui)
+		board_ui.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		boards_panel.add_child(board_ui)
 
 	var history := preload("res://scenes/HistoryUI.tscn").instantiate()
 	ui.add_child(history)
