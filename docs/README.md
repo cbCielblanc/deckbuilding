@@ -9,9 +9,9 @@ High level design material lives here so new contributors can quickly understand
 - Record Architectural Decision Records (ADRs) for major changes.
 
 ## Structure
-- `architecture.md` explains how managers interact and includes diagrams. Update it when adding or refactoring systems.
-- `glossary.md` lists short definitions of important game terminology.
-- `adr/` holds numbered ADR files that justify design choices such as chosen network protocol or UI toolkit.
+- `architecture.md` outlines how managers and scenes connect and includes small diagrams. Update it whenever systems change.
+- `glossary.md` offers brief definitions of important game terms so discussions stay consistent.
+- `adr/` stores numbered decision records, beginning with `0001-networking-choice.md` which documents the ENet stack.
 
 Each document should be concise so the folder remains readable. When implementing a new feature, check if any diagrams need updates and add an ADR entry if the change alters the project's direction.
 
