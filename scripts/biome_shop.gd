@@ -19,7 +19,9 @@ func buy(p:Player, idx:int):
 	p.gold    -= 4
 	p.essence -= 2
 	p.emit_stats()
-	p.deck.add(c.copy())
+	var copy := c.copy()
+	p.hand.append(copy)
+	p.emit_signal("hand_changed", p)
 	stock.remove_at(idx)
-	emit_signal("bought", p, c)
+	emit_signal("bought", p, copy)
 	if stock.is_empty(): _refill()
