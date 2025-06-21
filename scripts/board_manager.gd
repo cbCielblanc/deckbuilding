@@ -12,7 +12,7 @@ func _in_bounds(x:int, y:int) -> bool:
 # -------------------------------------------------------------- init
 func init_board(players:Array) -> void:
 	grids.clear()
-		for p in players:
+	for p in players:
 		var g : Array = []
 		for x in width:
 			var col : Array = []
