@@ -18,7 +18,8 @@ User interface scripts and scenes live here. They connect nodes to game managers
 - UI scripts keep tab indentation so Godot formatting stays uniform. `BoardUI`
   now uses tabs exclusively after removing stray spaces.
 - `BoardUI` listens to both the global `board_changed` event and each player's
-  own `board_changed` signal so opponent boards refresh immediately.
+  own `board_changed` signal so opponent boards refresh immediately. It also
+  shows the life, gold, essence and mana of every player below their name.
 
 During play, the HUD divides the screen into three bands: `StatsUI` spans the
 top, `BoardsPanel` fills the middle and holds one `BoardUI` per player, and
@@ -27,7 +28,8 @@ coordinates so the layout scales with the window size. `HistoryUI` occupies the
 right quarter of the screen and lists recent events.
 
 `BoardUI` builds a `GridContainer` sized by `BoardManager.width` and
-`BoardManager.height`. A label with the player's name appears above the grid.
+`BoardManager.height`. A label with the player's name appears above the grid
+followed by a row showing their resources.
 Each cell is a `Panel` with the card name followed by three lines: stats,
 mana cost and a short list of effect names. Units display their `attack` and
 `hp` as "atk/hp" while structures show "HP: x". The panels expand to fill
