@@ -5,10 +5,11 @@ class_name HandUI
 var player : Player
 
 func _ready() -> void:
-	player = get_node(player_path)
-	player.add_to_group("local_player")
-	player.connect("hand_changed", Callable(self, "_refresh"))   # ← connection
-	_refresh()
+        player = get_node(player_path)
+        if player.is_human:
+                player.add_to_group("local_player")
+        player.connect("hand_changed", Callable(self, "_refresh"))   # ← connection
+        _refresh()
 
 func _refresh(_p : Player = null) -> void:
 	# Nettoyage

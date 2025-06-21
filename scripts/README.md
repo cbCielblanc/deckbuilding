@@ -8,7 +8,7 @@ This folder collects all gameplay logic. Each GDScript stays loaded so managers 
 - Handle card data, decks and in-game effects.
 - Provide AI behaviours and multiplayer RPCs through `NetworkManager`.
 - Offer small helpers such as `Logger` and `SaveManager`.
-- Spawn `BoardUI` and `HandUI` when a match starts.
+- Spawn `BoardUI` for every player but only create `StatsUI` and `HandUI` for human participants so AI hands never overlap in the HUD.
 - All scripts use tab indentation; `board_manager.gd` and `terrain_manager.gd` were cleaned up to match.
 
 ## Public APIs
