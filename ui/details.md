@@ -8,3 +8,6 @@ During play the HUD divides the screen into three bands: `StatsUI` at the top, `
 `BoardUI` builds a grid based on `BoardManager.width` and `height`. A label above the grid shows the player's name followed by life, gold, essence and mana. Each cell is a `Panel` listing the card name, stats and cost. Units display attack and hit points as "atk/hp" while structures show "HP: x".
 
 `HandUI` relies on the same `CardButton` layout. Dragging a card connects to `GameManager.play_card`. Shops and dialogs update through signals such as `hand_changed`, `stats_changed` and `auction_open`. Menus start in a 1280×720 window and switch to 1920×1080 fullscreen when a match begins.
+
+### Controls
+Units can be moved directly on the board. Click a unit to begin a move and then click or drag to the destination tile. `BoardManager.move_unit` checks bounds and emits `board_changed` so all `BoardUI` instances update.
