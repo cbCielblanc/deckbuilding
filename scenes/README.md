@@ -28,3 +28,5 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 
 Scenes rarely contain code beyond hooking up their child nodes. When adding a new scene, keep scripts minimal and delegate behaviour to a manager in `scripts/` or UI controller in `ui/` so the structure stays maintainable.
 Both main scenes use a `TextureRect` named `Background` that loads `assets/ui/bg_main.png` to cover the screen.
+### Notes
+Temporary scene files (`*.tmp`) may appear during editing. They are ignored in git and can be safely removed.
