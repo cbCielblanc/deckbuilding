@@ -43,6 +43,7 @@ func draw(n : int) -> void:
 func start_turn() -> void:
 	Logger.info("start_turn")
 	mana = 3
+	essence += 1
 	draw(5)
 	emit_stats()
 	if !is_human:

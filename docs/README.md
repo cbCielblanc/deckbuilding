@@ -10,7 +10,7 @@ High level design material lives here so new contributors can quickly understand
 
 ## Structure
 - `architecture.md` outlines how managers and scenes connect and includes small diagrams. Update it whenever systems change.
-- `glossary.md` offers brief definitions of important game terms so discussions stay consistent.
+- `glossary.md` offers brief definitions of important game terms so discussions stay consistent. It notes that players gain one essence each turn.
 - `adr/` stores numbered decision records, beginning with `0001-networking-choice.md` which documents the ENet stack.
 
 Each document should be concise so the folder remains readable. When implementing a new feature, check if any diagrams need updates and add an ADR entry if the change alters the project's direction.

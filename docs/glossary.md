@@ -8,7 +8,7 @@
 
 **Effect** – A dictionary describing damage, buffs or resource changes processed by `EffectProcessor`.
 
-**Essence** – A resource earned while playing cards; certain abilities spend essence instead of mana.
+**Essence** – A resource gained at the start of each turn; certain abilities spend essence instead of mana.
 
 **Hand** – The set of cards drawn from the deck and displayed with `HandUI`.
 
