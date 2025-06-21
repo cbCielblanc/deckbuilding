@@ -42,7 +42,9 @@ func _ready() -> void:
 
 	var effect_str := ""
 	for key in card_data.effects.keys():
-		effect_str += "%s: %s\n" % [key, card_data.effects[key].to_string()]
+		var e := card_data.effects[key]
+		effect_str.append("%s: %s" % [k, e["action"]])
+		#effect_str += "%s: %s\n" % [key, card_data.effects[key].to_string()]
 
 	tooltip_text = "Coût: %d\nStats: %s\n%s" % [cost, stat_text, effect_str]
 
