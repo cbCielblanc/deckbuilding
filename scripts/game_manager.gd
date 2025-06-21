@@ -66,18 +66,18 @@ func _start_first_turn() -> void:
 # ---------------------------------------------------------------- init joueurs
 func _spawn_players() -> void:
 	for i in biomes.size():
-			var p : Player
-			if i == ai_index:
-					p = preload("res://scripts/ai_pro.gd").new()
-			else:
-					p = preload("res://scripts/player.gd").new()
+		var p : Player
+		if i == ai_index:
+			p = preload("res://scripts/ai_pro.gd").new()
+		else:
+			p = preload("res://scripts/player.gd").new()
 
-			p.name     = "Player%d" % i     # ← nom explicite, utile pour BoardUI paths
-			p.biome    = biomes[i]
-			p.is_human = (i != ai_index)
-			add_child(p)
-			players.append(p)
-			Logger.info("%s Join" % p.name)
+		p.name     = "Player%d" % i     # ← nom explicite, utile pour BoardUI paths
+		p.biome    = biomes[i]
+		p.is_human = (i != ai_index)
+		add_child(p)
+		players.append(p)
+		Logger.info("%s Join" % p.name)
 
 func _init_ui() -> void:
 	var ui := $UI
