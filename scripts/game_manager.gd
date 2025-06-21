@@ -156,11 +156,11 @@ func _on_defeat(p : Player) -> void:
 
 # ---------------------------------------------------------------- RPC helpers
 func remote_play_card(_card_id:String, _owner_id:int) -> void:
-			var p := players[_owner_id]
-			for c in p.hand:
-							if c.cid == _card_id:
-				play_card(c, p)
-				break
+	var p := players[_owner_id]
+	for c in p.hand:
+		if c.cid == _card_id:
+			play_card(c, p)
+			break
 
 func remote_end_turn(_owner_id:int) -> void:
-			players[_owner_id].end_turn()
+	players[_owner_id].end_turn()
