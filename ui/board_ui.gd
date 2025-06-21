@@ -42,6 +42,7 @@ func _refresh() -> void:
 				box.anchor_top = 0.0
 				box.anchor_right = 1.0
 				box.anchor_bottom = 1.0
+
 				var c : Card = board.grids[player][x][y]
 
 				var lbl_name := Label.new()
