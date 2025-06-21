@@ -11,6 +11,7 @@ This folder collects all gameplay logic. Each GDScript stays loaded so managers 
 - Spawn `BoardUI` for every player but only create `StatsUI` and `HandUI` for human participants so AI hands never overlap in the HUD.
 - All scripts use tab indentation; `board_manager.gd` and `terrain_manager.gd` were cleaned up to match.
 - `GameManager.play_card` now emits `hand_changed` so the UI refreshes instantly and calls `BoardManager.remove_dead` after resolving effects.
+- AI routines call `GameManager.play_card` directly so structures appear on every board without extra triggers.
 
 ## Public APIs
 | File | Functions | Effect on game |

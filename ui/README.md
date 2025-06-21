@@ -17,12 +17,14 @@ User interface scripts and scenes live here. They connect nodes to game managers
 - Present tutorial hints through `TutorialOverlay`.
 - UI scripts keep tab indentation so Godot formatting stays uniform. `BoardUI`
   now uses tabs exclusively after removing stray spaces.
+- `BoardUI` listens to both the global `board_changed` event and each player's
+  own `board_changed` signal so opponent boards refresh immediately.
 
 During play, the HUD divides the screen into three bands: `StatsUI` spans the
-top, `BoardUI` fills the middle, and `HandUI` anchors to the bottom. Each panel
-uses anchors instead of hard-coded coordinates so the layout scales with the
-HistoryUI occupies the right quarter of the screen and lists recent events.
-window size.
+top, `BoardsPanel` fills the middle and holds one `BoardUI` per player, and
+`HandUI` anchors to the bottom. Each panel uses anchors instead of hard-coded
+coordinates so the layout scales with the window size. `HistoryUI` occupies the
+right quarter of the screen and lists recent events.
 
 `BoardUI` builds a `GridContainer` sized by `BoardManager.width` and
 `BoardManager.height`. A label with the player's name appears above the grid.

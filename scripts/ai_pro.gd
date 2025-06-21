@@ -9,31 +9,22 @@ func _ai_play() -> void:
 
 # ------------------------------------------------------------- logique
 func _prioritise() -> void:
-	var sorted := hand.duplicate()
-	sorted.sort_custom(Callable(self, "_cmp_atk"))   # ← 1 seul argument
+        var sorted := hand.duplicate()
+        sorted.sort_custom(Callable(self, "_cmp_atk"))   # ← 1 seul argument
 
-	for c in sorted:
-		var cost : int
-		if c.card_type == constants.CardType.UNIT:
-			cost = 2
-		elif c.card_type == constants.CardType.SPELL:
-			cost = 1
-		else:
-			cost = 3
+        for c in sorted:
+                var cost : int
+                if c.card_type == constants.CardType.UNIT:
+                        cost = 2
+                elif c.card_type == constants.CardType.SPELL:
+                        cost = 1
+                else:
+                        cost = 3
 
-		if cost > mana:
-			continue
+                if cost > mana:
+                        continue
 
-		match c.card_type:
-			constants.CardType.UNIT:
-				_summon(c)
-			constants.CardType.SPELL:
-				_cast(c)
-			constants.CardType.STRUCTURE:
-				_struct(c)
-
-		mana -= cost
-		hand.erase(c)
+                get_parent().play_card(c, self)
 
 func _cmp_atk(a, b) -> int:
 	var atk_a : int = a.atk if a.atk != null else 0

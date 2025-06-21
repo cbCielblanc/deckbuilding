@@ -7,10 +7,12 @@ var player : Player
 var board  : BoardManager
 
 func _ready() -> void:
-	player = get_node(player_path)
-	board = get_node(board_path)
-	EventBus.connect("event", Callable(self, "_on_event"))
-	_refresh()
+        player = get_node(player_path)
+        board = get_node(board_path)
+       EventBus.connect("event", Callable(self, "_on_event"))
+       if player:
+               player.connect("board_changed", Callable(self, "_refresh"))
+        _refresh()
 
 func _on_event(tag:String, _payload:Dictionary) -> void:
 	if tag == "board_changed":
