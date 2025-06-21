@@ -81,6 +81,8 @@ func _ready() -> void:
 
 	var lbl_eff := Label.new()
 	lbl_eff.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lbl_eff.autowrap_mode = TextServer.AUTOWRAP_WORD
+	lbl_eff.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	lbl_eff.text = "Eff: %s" % " | ".join(effects_text)
 	box.add_child(lbl_eff)
 
