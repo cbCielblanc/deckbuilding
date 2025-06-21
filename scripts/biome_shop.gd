@@ -9,9 +9,9 @@ var stock : Array[Card] = []
 func _ready(): _refill()
 
 func _refill():
-        var pool : Array[Card] = CardDatabase.biome(biome).duplicate() as Array[Card]
-        pool.shuffle()
-        stock = pool.slice(0, size)
+	var pool : Array[Card] = CardDatabase.biome(biome).duplicate() as Array[Card]
+	pool.shuffle()
+	stock = pool.slice(0, size)
 
 func buy(p:Player, idx:int):
 	if p.gold < 4 or p.essence < 2: return
