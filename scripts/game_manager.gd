@@ -136,7 +136,7 @@ func _on_season_start(_season:int) -> void:
 	terrain.season_update(SeasonManager.current())
 
 	var shop := BiomeShop.new()
-	shop.biome = SeasonManager.current()
+	shop.biome = SeasonManager.current_biome()
 	add_child(shop)
 
 	var dialog : BiomeShopUI = preload("res://scenes/BiomeShopDialog.tscn").instantiate()
@@ -159,8 +159,8 @@ func remote_play_card(_card_id:String, _owner_id:int) -> void:
 			var p := players[_owner_id]
 			for c in p.hand:
 							if c.cid == _card_id:
-											play_card(c, p)
-											break
+				play_card(c, p)
+				break
 
 func remote_end_turn(_owner_id:int) -> void:
 			players[_owner_id].end_turn()
