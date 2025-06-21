@@ -68,16 +68,19 @@ func _refresh() -> void:
 				box.anchor_top = 0.0
 				box.anchor_right = 1.0
 				box.anchor_bottom = 1.0
+				box.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 				var c : Card = board.grids[player][x][y]
 
 				var lbl_name := Label.new()
 				lbl_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				lbl_name.text = c.name if c else "-"
+				lbl_name.mouse_filter = Control.MOUSE_FILTER_IGNORE
 				box.add_child(lbl_name)
 
 				var lbl_stats := Label.new()
 				lbl_stats.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				lbl_stats.mouse_filter = Control.MOUSE_FILTER_IGNORE
 				if c:
 					if c.card_type == constants.CardType.UNIT:
 						lbl_stats.text = "%d/%d" % [c.atk, c.hp]
@@ -90,6 +93,7 @@ func _refresh() -> void:
 				box.add_child(lbl_stats)
 				var lbl_cost := Label.new()
 				lbl_cost.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				lbl_cost.mouse_filter = Control.MOUSE_FILTER_IGNORE
 				if c:
 					var cost := 0
 					match c.card_type:
@@ -106,6 +110,7 @@ func _refresh() -> void:
 
 				var lbl_eff := Label.new()
 				lbl_eff.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				lbl_eff.mouse_filter = Control.MOUSE_FILTER_IGNORE
 				if c:
 					var actions : Array[String] = []
 					for key in c.effects.keys():
@@ -126,10 +131,10 @@ func _refresh() -> void:
 				var head_struct := Label.new()
 				head_struct.text = "Structures:"
 				add_child(head_struct)
-				for s in player.structures:
-						var lbl := Label.new()
-						lbl.text = "[S] %s  (%d PV)" % [s.name, s.hp]
-						add_child(lbl)
+		for s in player.structures:
+			var lbl := Label.new()
+			lbl.text = "[S] %s  (%d PV)" % [s.name, s.hp]
+			add_child(lbl)
 
 func _on_cell_input(event: InputEvent, x: int, y: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
