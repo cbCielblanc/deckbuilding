@@ -13,6 +13,8 @@ Gameplay logic and autoloaded singletons live here. Keeping them together lets m
 - Apply card effects each season through `GameManager._apply_season_effects`.
 - `EffectProcessor.apply` skips status effects if no target exists to avoid null errors.
 - `Player.draw` assigns owners to drawn cards so spells target correctly.
+- `Card.owner` is typed as `Player` so effects like `enemy_atk_mod` can safely access opponent data.
+- `EffectProcessor.apply` declares `opp: Player` and `idx: int` so Godot can type-check transform effects.
 - `SeasonManager.current_biome()` maps the active season to a biome name.
 - `BiomeShop` draws four cards from the current biome and any purchase adds the
   chosen card directly to the buyer's hand.
