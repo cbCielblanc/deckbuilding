@@ -69,7 +69,7 @@ func _refresh() -> void:
 				box.anchor_right = 1.0
 				box.anchor_bottom = 1.0
 
-                               var c : Card = board.grids[player][x][y]
+				var c : Card = board.grids[player][x][y]
 
 				var lbl_name := Label.new()
 				lbl_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -116,31 +116,30 @@ func _refresh() -> void:
 					lbl_eff.text = ""
 				box.add_child(lbl_eff)
 
-                               cell.add_child(box)
-                                cell.gui_input.connect(Callable(self, "_on_cell_input").bind(x, y))
-                                grid.add_child(cell)
-                add_child(grid)
+				cell.add_child(box)
+				cell.gui_input.connect(Callable(self, "_on_cell_input").bind(x, y))
+				grid.add_child(cell)
+		add_child(grid)
 
 	# 3) afficher les structures
 		if player.structures.size() > 0:
 				var head_struct := Label.new()
 				head_struct.text = "Structures:"
 				add_child(head_struct)
-                for s in player.structures:
-                        var lbl := Label.new()
-                        lbl.text = "[S] %s  (%d PV)" % [s.name, s.hp]
-                        add_child(lbl)
+				for s in player.structures:
+						var lbl := Label.new()
+						lbl.text = "[S] %s  (%d PV)" % [s.name, s.hp]
+						add_child(lbl)
 
 func _on_cell_input(event: InputEvent, x: int, y: int) -> void:
-       if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-               if event.pressed:
-                       var c: Card = board.grids[player][x][y]
-                       if c and c.card_type == constants.CardType.UNIT:
-                               selected_from = Vector2i(x, y)
-               else:
-                       if selected_from.x != -1:
-                               board.move_unit(player, selected_from.x, selected_from.y, x, y)
-                               selected_from = Vector2i(-1, -1)
-                               _refresh()
-                               EventBus.emit("board_changed")
-
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			var c: Card = board.grids[player][x][y]
+			if c and c.card_type == constants.CardType.UNIT:
+				selected_from = Vector2i(x, y)
+		else:
+			if selected_from.x != -1:
+				board.move_unit(player, selected_from.x, selected_from.y, x, y)
+				selected_from = Vector2i(-1, -1)
+				_refresh()
+				EventBus.emit("board_changed")
