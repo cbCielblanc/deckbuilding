@@ -10,7 +10,8 @@ User interface scripts and scenes live here. They connect nodes to game managers
 - Provide menus for solo and network play (`MainMenu`, `LobbyMenu`).
 - Support drag and drop of cards and show dialogs (`CardButton`, `MarketDialog`).
 - `CardButton` sizes icons based on the window (`size_ratio` export), sets
-  `expand_icon` and now displays a tooltip with cost, stats and effects.
+  `expand_icon`, displays a tooltip with cost, stats and effects and
+  now prints those details below the name in four lines.
 - Present tutorial hints through `TutorialOverlay`.
 - UI scripts keep tab indentation so Godot formatting stays uniform. `BoardUI`
   now uses tabs exclusively after removing stray spaces.
@@ -26,6 +27,9 @@ Each cell is a `Panel` with the card name followed by three lines: stats,
 mana cost and a short list of effect names. Units display their `attack` and
 `hp` as "atk/hp" while structures show "HP: x". The panels expand to fill
 the available width so the board appears as a neat grid.
+
+`HandUI` shows the same details for each card by using `CardButton`, so the
+player always sees stats, cost and effects while choosing a card to play.
 
 `HandUI` connects each `CardButton` to `GameManager.play_card` when dragged so cards are played instantly. `BoardUI`, `StatsUI`, `BiomeShopUI` and `MarketDialog` update text labels or buttons when notified via signals like `hand_changed`, `stats_changed` or `auction_open`. `LobbyMenu` manages the network lobby by connecting to `NetworkManager` signals. `MainMenu` transitions to the lobby or tutorial scenes and keeps the window in a 1280×720 launcher mode. When a game starts, both menus switch the display to exclusive fullscreen at 1920×1080.
 
