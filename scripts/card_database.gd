@@ -27,14 +27,14 @@ func _build(d : Dictionary) -> Card:
 	c.effects = d.get("effects", {})
 	return c
 
-func neutral() -> Array:
-	var out : Array = []
+func neutral() -> Array[Card]:
+	var out : Array[Card] = []
 	for d in DATA.neutral_structures:
 		out.append(_build(d))
 	return out
 
-func biome(b:String) -> Array:
-	var out : Array = []
+func biome(b:String) -> Array[Card]:
+	var out : Array[Card] = []
 	for d in DATA.biome_cards.get(b, []):
 		out.append(_build(d))
 	return out
