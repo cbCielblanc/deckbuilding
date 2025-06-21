@@ -9,6 +9,7 @@ Gameplay logic and autoloaded singletons live here. Keeping them together lets m
 - Provide AI routines and network RPCs through `NetworkManager`.
 - Offer helpers like `Logger`, `SaveManager` and `EventBus`.
 - Manage terrain visuals each season through `TerrainManager` and `TerrainTile`.
+- Spawn a `BiomeShop` at every season start so players can buy biome cards.
 
 `GameManager.play_card` emits `hand_changed` so the UI refreshes and calls `BoardManager.remove_dead` after resolving effects. AI opponents call the same method so structures spawn without extra triggers. `BoardManager` rebuilds the grid and emits `board_changed` whenever units move. Tutorial steps use `TutorialManager.start()` and `on_action(tag)`.
 
@@ -26,3 +27,5 @@ Gameplay logic and autoloaded singletons live here. Keeping them together lets m
 
 Example: when a player uses a card, `GameManager.play_card` updates the board then `NetworkManager` forwards the RPC so peers stay in sync.
 Market auctions rely on `MarketManager` which opens, bids and closes each round.
+`_on_season_start` instantiates `BiomeShopDialog` with the new shop, then closes
+it once a card is purchased and refills the stock.
