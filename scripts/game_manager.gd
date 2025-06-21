@@ -76,19 +76,21 @@ func _spawn_players() -> void:
 		Logger.info("%s Join" % p.name)
 
 func _init_ui() -> void:
-	var ui := $UI
-	for p in players:
-			var stats := preload("res://scenes/StatsUI.tscn").instantiate()
-			stats.player_path = p.get_path()
-			ui.add_child(stats)
-			var hand := preload("res://scenes/HandUI.tscn").instantiate()
-			hand.player_path = p.get_path()
-			ui.add_child(hand)
+        var ui := $UI
+        for p in players:
+                if p.is_human:
+                        var stats := preload("res://scenes/StatsUI.tscn").instantiate()
+                        stats.player_path = p.get_path()
+                        ui.add_child(stats)
 
-			var board_ui := preload("res://scenes/BoardUI.tscn").instantiate()
-			board_ui.player_path = p.get_path()
-			board_ui.board_path  = board.get_path()
-			ui.add_child(board_ui)
+                        var hand := preload("res://scenes/HandUI.tscn").instantiate()
+                        hand.player_path = p.get_path()
+                        ui.add_child(hand)
+
+                var board_ui := preload("res://scenes/BoardUI.tscn").instantiate()
+                board_ui.player_path = p.get_path()
+                board_ui.board_path  = board.get_path()
+                ui.add_child(board_ui)
 
 # ---------------------------------------------------------------- signaux
 func _connect_signals() -> void:

@@ -5,6 +5,7 @@ User interface scripts and scenes live here. They connect nodes to game managers
 
 ## Responsibilities
 - Render a player's hand, battlefield and shops (`HandUI`, `BoardUI`, `BiomeShopUI`).
+- `HandUI` and `StatsUI` are only instantiated for human players so AI opponents never create overlapping HUD elements.
 - Display resources such as life and gold (`StatsUI`) and provide an **End** button to finish the turn.
 - Provide menus for solo and network play (`MainMenu`, `LobbyMenu`).
 - Support drag and drop of cards and show dialogs (`CardButton`, `MarketDialog`).
