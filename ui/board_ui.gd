@@ -11,8 +11,8 @@ func _ready() -> void:
 	board = get_node(board_path)
 	EventBus.connect("event", Callable(self, "_on_event"))
 	if player:
-	player.connect("board_changed", Callable(self, "_refresh"))
-	player.connect("stats_changed", Callable(self, "_refresh"))
+		player.connect("board_changed", Callable(self, "_refresh"))
+		player.connect("stats_changed", Callable(self, "_refresh"))
 	_refresh()
 
 func _on_event(tag:String, _payload:Dictionary) -> void:
