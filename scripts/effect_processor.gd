@@ -39,7 +39,7 @@ func apply(e : Dictionary, src : Card, tgt = null) -> void:
 			tgt.status.frozen = 1
 		"enemy_atk_mod":
 			if src.owner:
-				var opp := src.owner.opponent()
+				var opp: Player = src.owner.opponent()
 				if opp:
 					for u in opp.units:
 						u.atk += e.value
@@ -49,9 +49,10 @@ func apply(e : Dictionary, src : Card, tgt = null) -> void:
 			var d := src.copy(); d.atk = 0; d.hp = 1; d.owner = src.owner
 			src.owner.units.append(d)
 		"transform":
-			var rep : Card = CardDatabase.neutral().filter(func(c): return c.cid == e.new_id)[0].copy()
-			var idx := src.owner.structures.find(src)
-			if idx != -1: src.owner.structures[idx] = rep
+			var rep: Card = CardDatabase.neutral().filter(func(c): return c.cid == e.new_id)[0].copy()
+			var idx: int = src.owner.structures.find(src)
+			if idx != -1:
+				src.owner.structures[idx] = rep
 		"penalty_draw":  src.owner.draw(e.value)          # value négatif
 		_:
 			Logger.warn("Unknown effect: %s" % a)
