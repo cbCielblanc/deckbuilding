@@ -27,15 +27,27 @@ func _refresh() -> void:
 	if board and board.grids.has(player):
 		var grid := GridContainer.new()
 		grid.columns = board.width
+		grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		grid.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		grid.custom_minimum_size = Vector2(0, 200)
 		for y in board.height:
 			for x in board.width:
-				var cell := VBoxContainer.new()
+				var cell := Panel.new()
+				cell.custom_minimum_size = Vector2(160, 80)
+				cell.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				cell.size_flags_vertical = Control.SIZE_EXPAND_FILL
+
+				var box := VBoxContainer.new()
+				box.anchor_left = 0.0
+				box.anchor_top = 0.0
+				box.anchor_right = 1.0
+				box.anchor_bottom = 1.0
 				var c : Card = board.grids[player][x][y]
 
 				var lbl_name := Label.new()
 				lbl_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				lbl_name.text = c.name if c else "-"
-				cell.add_child(lbl_name)
+				box.add_child(lbl_name)
 
 				var lbl_stats := Label.new()
 				lbl_stats.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -48,8 +60,9 @@ func _refresh() -> void:
 						lbl_stats.text = ""
 				else:
 					lbl_stats.text = ""
-				cell.add_child(lbl_stats)
+				box.add_child(lbl_stats)
 
+				cell.add_child(box)
 				grid.add_child(cell)
 		add_child(grid)
 
