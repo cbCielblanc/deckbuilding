@@ -12,6 +12,10 @@ var _visual_root : Node2D
 var _tile_scene : PackedScene = preload("res://scenes/TerrainTile.tscn")
 
 func init(players:Array) -> void:
+	if _visual_root:
+		remove_child(_visual_root)
+		_visual_root.queue_free()
+
 	_visual_root = Node2D.new()
 	add_child(_visual_root)
 

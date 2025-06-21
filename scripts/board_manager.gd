@@ -3,7 +3,7 @@ class_name BoardManager
 
 var width  := 5
 var height := 3
-var grids  : Dictionary = {}                 # player -> 2-D array Card
+var grids  : Dictionary = {}				 # player -> 2-D array Card
 
 # -------------------------------------------------------------- helpers
 func _in_bounds(x:int, y:int) -> bool:
@@ -11,7 +11,8 @@ func _in_bounds(x:int, y:int) -> bool:
 
 # -------------------------------------------------------------- init
 func init_board(players:Array) -> void:
-	for p in players:
+	grids.clear()
+		for p in players:
 		var g : Array = []
 		for x in width:
 			var col : Array = []
@@ -46,7 +47,7 @@ func move_unit(p, from_x:int, from_y:int, to_x:int, to_y:int) -> bool:
 	if grids[p][to_x][to_y] != null:
 		return false
 	grids[p][from_x][from_y] = null
-	grids[p][to_x][to_y]     = c
+	grids[p][to_x][to_y]	 = c
 	p.emit_board()
 	EventBus.emit("board_changed")
 	return true
