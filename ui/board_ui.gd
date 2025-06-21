@@ -27,13 +27,44 @@ func _refresh() -> void:
 	if board and board.grids.has(player):
 		var grid := GridContainer.new()
 		grid.columns = board.width
+		grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		grid.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		grid.custom_minimum_size = Vector2(0, 200)
 		for y in board.height:
 			for x in board.width:
-				var lbl := Label.new()
-				lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				var cell := Panel.new()
+				cell.custom_minimum_size = Vector2(160, 80)
+				cell.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				cell.size_flags_vertical = Control.SIZE_EXPAND_FILL
+
+				var box := VBoxContainer.new()
+				box.anchor_left = 0.0
+				box.anchor_top = 0.0
+				box.anchor_right = 1.0
+				box.anchor_bottom = 1.0
+
 				var c : Card = board.grids[player][x][y]
-				lbl.text = c.name if c else "-"
-				grid.add_child(lbl)
+
+				var lbl_name := Label.new()
+				lbl_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				lbl_name.text = c.name if c else "-"
+				box.add_child(lbl_name)
+
+				var lbl_stats := Label.new()
+				lbl_stats.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				if c:
+					if c.card_type == constants.CardType.UNIT:
+						lbl_stats.text = "%d/%d" % [c.atk, c.hp]
+					elif c.card_type == constants.CardType.STRUCTURE:
+						lbl_stats.text = "HP: %d" % c.hp
+					else:
+						lbl_stats.text = ""
+				else:
+					lbl_stats.text = ""
+				box.add_child(lbl_stats)
+
+				cell.add_child(box)
+				grid.add_child(cell)
 		add_child(grid)
 
 	# 3) afficher les structures

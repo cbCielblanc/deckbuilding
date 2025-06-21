@@ -22,7 +22,7 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 | `LobbyMenu.tscn` | Connects peers and displays player list. |
 | `Main.tscn` | Contains battle board, managers and a background. |
 | `MarketDialog.tscn` | Popup for the neutral auction house. |
-| `TerrainTile.tscn` | Visual tile scene with drop shadow and a transparent `Control` overlay for hover detection. |
+| `TerrainTile.tscn` | Visual tile with drop shadow, a transparent `Control` overlay and a `Label` that shows the biome name. |
 
 
 Scenes rarely contain code beyond hooking up their child nodes. When adding a new scene, keep scripts minimal and delegate behaviour to a manager in `scripts/` or UI controller in `ui/` so the structure stays maintainable.

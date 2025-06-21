@@ -17,6 +17,7 @@ var _base_color : Color = Color.WHITE
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var shadow : Sprite2D = $Shadow
 @onready var clickable : Control = $Clickable
+@onready var lbl_biome : Label = $Label
 
 func _ready() -> void:
 	set_biome(biome)
@@ -24,11 +25,11 @@ func _ready() -> void:
 	clickable.mouse_exited.connect(Callable(self, "_on_mouse_exited"))
 
 	if sprite.texture == null:
-		var img := Image.create(64, 64, false, Image.FORMAT_RGBA8)
-		img.fill(Color.WHITE)
-		var tex := ImageTexture.create_from_image(img)
-		sprite.texture = tex
-		shadow.texture = tex
+	var img := Image.create(64, 64, false, Image.FORMAT_RGBA8)
+	img.fill(Color.WHITE)
+	var tex := ImageTexture.create_from_image(img)
+	sprite.texture = tex
+	shadow.texture = tex
 
 func apply_season(season:String) -> void:
 	if season_modifier.has(season):
@@ -42,7 +43,9 @@ func set_biome(b:String) -> void:
 		if tex:
 			sprite.texture = tex
 			shadow.texture = tex
-
+	if lbl_biome:
+		lbl_biome.text = biome
+	
 func set_color(color:Color) -> void:
 	_base_color = color
 	sprite.modulate = _base_color
