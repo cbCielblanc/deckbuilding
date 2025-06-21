@@ -14,7 +14,7 @@ UI scripts and scenes live here. They connect menu buttons and HUD nodes to game
 - Use anchored containers so layouts scale with window size.
  - Scripts use tabs for indentation to match Godot defaults.
 
-`StatsUI` spans the top, `BoardsPanel` holds one `BoardUI` per player in the middle and `HandUI` stays at the bottom. `HistoryUI` occupies the right edge. Signals like `hand_changed`, `board_changed` and `auction_open` keep every panel in sync. BoardUI also shows life, gold, essence and mana under each player's name. Each card preview uses the same `CardButton` layout so stats and costs stay consistent. `BiomeShopUI` hides after a purchase and the shop refills before the next season.
+`StatsUI` spans the top, `BoardsPanel` holds one `BoardUI` per player in the middle and `HandUI` stays at the bottom. `HistoryUI` occupies the right edge. Signals like `hand_changed`, `board_changed` and `auction_open` keep every panel in sync. BoardUI also shows life, gold, essence and mana under each player's name. Each card preview uses the same `CardButton` layout so stats and costs stay consistent. `BiomeShopUI` hides after a purchase and the shop refills before the next season. CardButton also wraps effect descriptions to keep text inside the button.
 Players can click a unit then select a destination tile to move it. Dragging works too, forwarding the coordinates to `BoardManager.move_unit`.
 `BoardUI` sets `mouse_filter` to `IGNORE` on inner labels so each cell's panel receives the click event.
 
