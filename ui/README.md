@@ -8,6 +8,7 @@ UI scripts and scenes live here. They connect menu buttons and HUD nodes to game
 - Provide `MainMenu` and `LobbyMenu` for solo or online play.
 - Show resources and the end-turn button through `StatsUI`.
 - Support drag and drop via `CardButton` and open dialogs such as `MarketDialog`.
+- `MarketDialog` propose un `SpinBox` pour miser et un bouton "Miser" qui envoie la mise.
 - `BiomeShopUI` lists seasonal cards and hooks to `BiomeShop`.
 - Spawn `HandUI` and `StatsUI` only for human players to avoid AI HUD clutter.
 - Offer tutorial hints through `TutorialOverlay`.

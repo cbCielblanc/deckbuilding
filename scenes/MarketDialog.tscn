@@ -8,3 +8,11 @@ script = ExtResource("1")
 
 [node name="Label" type="Label" parent="."]
 text = "Texte enchère"
+
+[node name="BidAmount" type="SpinBox" parent="."]
+min_value = 0.0
+max_value = 99.0
+step = 1.0
+
+[node name="BidButton" type="Button" parent="."]
+text = "Miser"
