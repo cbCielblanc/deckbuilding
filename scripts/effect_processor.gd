@@ -4,11 +4,19 @@ extends Node
 func apply(e : Dictionary, src : Card, tgt = null) -> void:
 	var a = e.get("action", "")
 	match a:
-		"atk":           tgt.atk += e.value
-		"hp":            tgt.hp  = min(tgt.max_hp, tgt.hp + e.value)
+		"atk":
+			if tgt:
+				tgt.atk += e.value
+		"hp":
+			if tgt:
+				tgt.hp  = min(tgt.max_hp, tgt.hp + e.value)
 		"team_atk":      for u in src.owner.units: u.atk += e.value
-		"burn":          tgt.status.burn   += e.value
-		"poison":        tgt.status.poison += e.value
+		"burn":
+			if tgt:
+				tgt.status.burn   += e.value
+		"poison":
+			if tgt:
+				tgt.status.poison += e.value
 		"draw":          src.owner.draw(e.value)
 		"mana":
 			src.owner.mana += e.value
@@ -23,11 +31,18 @@ func apply(e : Dictionary, src : Card, tgt = null) -> void:
 		"reset_charge":  src.charge = 0
 		"skip_segment":  SeasonManager.advance_segment()
 		"extend_season": SeasonManager.segment = max(0, SeasonManager.segment - 1)
-		"root":          tgt.status.rooted = true
+		"root":          if tgt:
+			tgt.status.rooted = true
 		"camouflage":    src.status.camouflage = true
 		"sleep":         src.status.sleep = 1
-		"freeze_unit":   tgt.status.frozen = 1
-		"enemy_atk_mod": for u in src.owner.opponent().units: u.atk += e.value
+		"freeze_unit":   if tgt:
+			tgt.status.frozen = 1
+		"enemy_atk_mod":
+			if src.owner:
+				var opp := src.owner.opponent()
+				if opp:
+					for u in opp.units:
+						u.atk += e.value
 		"create_token":  src.owner.summon_token(e.token, e.atk, e.hp)
 		"consume_token": src.owner.consume_token(e.token, e.effect, e.value)
 		"duplicate_phantom":
