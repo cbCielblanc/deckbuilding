@@ -12,7 +12,7 @@ static func destroy(c : Card) -> void:
 static func unit_vs_unit(a:Card, d:Card) -> void:
 	d.damage(a.atk)
 	if d.hp > 0:
-	a.damage(d.atk)
+		a.damage(d.atk)
 
 static func full_attack(att:Player, def:Player) -> void:
 	var i := 0
