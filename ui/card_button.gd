@@ -22,9 +22,10 @@ const CARD_TEXTURES := {
 signal dragged(card : Card)
 
 func _ready() -> void:
-	text = ""
-	icon = CARD_TEXTURES.get(card_data.biome, CARD_TEXTURES["Neutral"])
-	expand_icon = true
+       text = ""
+       icon = null
+       expand_icon = false
+       icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var width := get_viewport_rect().size.x * size_ratio
 	custom_minimum_size = Vector2(width, width * 1.5)
 
@@ -49,11 +50,17 @@ func _ready() -> void:
 
 	tooltip_text = "Coût: %d\nStats: %s\n%s" % [cost, stat_text, "\n".join(actions)]
 
-	var box := VBoxContainer.new()
-	box.anchor_left = 0.0
-	box.anchor_top = 0.0
-	box.anchor_right = 1.0
-	box.anchor_bottom = 1.0
+       var box := VBoxContainer.new()
+       box.anchor_left = 0.0
+       box.anchor_top = 0.0
+       box.anchor_right = 1.0
+       box.anchor_bottom = 1.0
+
+       var icon_rect := TextureRect.new()
+       icon_rect.expand = true
+       icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+       icon_rect.texture = CARD_TEXTURES.get(card_data.biome, CARD_TEXTURES["Neutral"])
+       box.add_child(icon_rect)
 
 	var lbl_name := Label.new()
 	lbl_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
