@@ -24,7 +24,8 @@ Scenes describe the node hierarchy for menus, gameplay and popups. They remain l
 | `HistoryUI.tscn` | Panel showing the action log on the right side. |
 | `MarketDialog.tscn` | Auction popup with a bid `SpinBox` and "Miser" button. |
 | `BiomeShopDialog.tscn` | Popup showing seasonal cards at the start of each season. |
-| `TerrainTile.tscn` | Visual tile with drop shadow, a transparent `Control` overlay and a `Label` that shows the biome name. |
+| `TerrainTile.tscn` | Visual tile with drop shadow, a transparent `Control` overlay and a `Label` that shows the biome name. Includes an `AnimationPlayer` for spawn and battle effects. |
+| `CardButton.tscn` | Button used in `HandUI` to display cards. Now has an `AnimationPlayer` so GameManager can animate plays. |
 
 
 Scenes rarely contain code beyond hooking up their child nodes. When adding a new scene, keep scripts minimal and delegate behaviour to a manager in `scripts/` or UI controller in `ui/` so the structure stays maintainable.

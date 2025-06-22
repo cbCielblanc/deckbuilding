@@ -63,3 +63,11 @@ func remove_dead():
 					Logger.info("%s destroyed at %d,%d" % [c.name, x, y])
 					c.owner.emit_board()
 					EventBus.emit("board_changed")
+
+func find_card(card:Card) -> Dictionary:
+	for p in grids:
+		for x in width:
+			for y in height:
+				if grids[p][x][y] == card:
+					return {"player": p, "x": x, "y": y}
+	return {}

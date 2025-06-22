@@ -5,6 +5,11 @@ class_name CardButton
 ## Il gère le drag-and-drop d’une carte depuis la main vers le plateau.
 
 var card_data : Card
+@onready var anim : AnimationPlayer = $Anim
+
+const EFFECT_SPAWN_PATH := "res://assets/effects/spawn_effect.png"
+const EFFECT_ATTACK_PATH := "res://assets/effects/attack_effect.png"
+const EFFECT_DESTROY_PATH := "res://assets/effects/destroy_effect.png"
 
 # Percentage of the screen width this button should occupy.
 @export var size_ratio : float = 0.1
@@ -95,3 +100,30 @@ func _gui_input(event : InputEvent) -> void:
 
 func _on_pressed() -> void:
 	emit_signal("dragged", card_data)
+
+func play_spawn() -> void:
+	scale = Vector2.ZERO
+	create_tween().tween_property(self, "scale", Vector2.ONE, 0.2)
+	_show_effect(EFFECT_SPAWN_PATH)
+
+func play_attack() -> void:
+	var tw := create_tween()
+	tw.tween_property(self, "scale", Vector2.ONE * 1.2, 0.1)
+	tw.tween_property(self, "scale", Vector2.ONE, 0.1)
+	_show_effect(EFFECT_ATTACK_PATH)
+
+func play_destroy() -> void:
+	create_tween().tween_property(self, "modulate:a", 0.0, 0.2)
+	_show_effect(EFFECT_DESTROY_PATH)
+	
+func _show_effect(path:String) -> void:
+	var tex := load(path)
+	if tex == null:
+	return
+	var s := Sprite2D.new()
+	s.texture = tex
+	s.centered = true
+	add_child(s)
+	var tw := create_tween()
+	tw.tween_property(s, "modulate:a", 0.0, 0.25)
+	tw.tween_callback(Callable(s, "queue_free"))

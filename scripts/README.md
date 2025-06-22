@@ -9,6 +9,9 @@ Gameplay logic and autoloaded singletons live here. Keeping them together lets m
 - Provide AI routines and network RPCs through `NetworkManager`.
 - Offer helpers like `Logger`, `SaveManager` and `EventBus`.
 - Manage terrain visuals each season through `TerrainManager` and `TerrainTile`.
+- Trigger tile animations through `BattleManager` and `GameManager` when cards
+  spawn, attack or die.
+- Tile scripts load placeholder textures from `assets/effects/` if present.
 - Spawn a `BiomeShop` at every season start so players can buy biome cards.
 - Apply card effects each season through `GameManager._apply_season_effects`.
 - `EffectProcessor.apply` skips status effects if no target exists to avoid null errors.

@@ -34,7 +34,10 @@ func play_card(card:Card, p:Player) -> void:
 	else:
 		var pos := _find_slot(p)
 		if pos.x >= 0:
-			board.place_card(p, card, pos.x, pos.y)
+			if board.place_card(p, card, pos.x, pos.y):
+				var tile := terrain.tiles[p][pos.x][pos.y]
+				if tile:
+					tile.play_spawn()
 			board.remove_dead()
 
 	EventBus.emit("history", {"msg": "%s plays %s" % [p.name, card.name]})

@@ -17,6 +17,7 @@ Use PNGs at power-of-two sizes so textures scale well. When adding new icons, cr
 | `cards/` | frames such as `forest_card.png` and `neutral_structure.png` |
 | `ui/` | icons including `gold.png`, `mana.png`, `burn.png` |
 | `terrain/` | simple 64×64 textures for each biome *(omitted from repository)* |
+| `effects/` | placeholder effects (`spawn_effect.png`, `attack_effect.png`, `destroy_effect.png`) *(not included in repository)* |
 
 
 Large sprite sheets or sounds should live in a subfolder and be referenced by a scene so they are loaded only when necessary. Keeping this folder clean helps reduce build size and keeps git history manageable.

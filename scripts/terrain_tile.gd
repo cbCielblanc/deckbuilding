@@ -18,6 +18,11 @@ var _base_color : Color = Color.WHITE
 @onready var shadow : Sprite2D = $Shadow
 @onready var clickable : Control = $Clickable
 @onready var lbl_biome : Label = $Label
+@onready var anim : AnimationPlayer = $Anim
+
+const EFFECT_SPAWN_PATH := "res://assets/effects/spawn_effect.png"
+const EFFECT_ATTACK_PATH := "res://assets/effects/attack_effect.png"
+const EFFECT_DESTROY_PATH := "res://assets/effects/destroy_effect.png"
 
 func _ready() -> void:
 	set_biome(biome)
@@ -61,3 +66,30 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	highlight(false)
+
+func play_spawn() -> void:
+	scale = Vector2.ZERO
+	create_tween().tween_property(self, "scale", Vector2.ONE, 0.2)
+	_show_effect(EFFECT_SPAWN_PATH)
+
+func play_attack() -> void:
+	var tw := create_tween()
+	tw.tween_property(self, "scale", Vector2.ONE * 1.2, 0.1)
+	tw.tween_property(self, "scale", Vector2.ONE, 0.1)
+	_show_effect(EFFECT_ATTACK_PATH)
+
+func play_destroy() -> void:
+	create_tween().tween_property(self, "modulate:a", 0.0, 0.2)
+	_show_effect(EFFECT_DESTROY_PATH)
+
+func _show_effect(path:String) -> void:
+	var tex := load(path)
+	if tex == null:
+	return
+	var s := Sprite2D.new()
+	s.texture = tex
+	s.centered = true
+	add_child(s)
+	var tw := create_tween()
+	tw.tween_property(s, "modulate:a", 0.0, 0.25)
+	tw.tween_callback(Callable(s, "queue_free"))
